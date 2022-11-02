@@ -2,12 +2,15 @@
 include("../connection.php");
 include("../headerAndFooter/header.php");
 $query = "SELECT `tour_name`, `tour_operator`, `country`, `price`, `image`, `operator_image`, `reviews`, `description` FROM `Tours`";
-$result = mysqli_query($con, $query);
+$result = mysqli_query($con, $query); ?>
+<div class="FeaturedPlaces">
+<?php
 while ($row = mysqli_fetch_array($result)) {
-    echo "
-    <div class='FeaturedPlaces'>
 
-    <div class='Places'>
+    echo "
+    
+
+    <div class='Places $dvivName'>
       <h5>{$row['tour_name']}</h5>
       <img src='{$row['image']}'>
       <p>{$row['description']}</p>
@@ -18,7 +21,14 @@ while ($row = mysqli_fetch_array($result)) {
 
     </div>
 
-  </div>
     ";
+   
+    
 }
+?>
+
+</div>
+<?php 
 include("../headerAndFooter/footer.php");
+?>
+

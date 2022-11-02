@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <title>Home</title>
+
     <!-- bootstrap css link -->
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -14,11 +14,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <!-- custom css file link -->
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/destinations.css">
-
     <link rel="stylesheet" href="../css/home.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/headers/">
     <link rel="preconnect dns-prefetch" href="https://fonts.googleapis.com" crossorigin>
+
+    <link href='http://fonts.googleapis.com/css?family=Montserrat|Raleway:400,200,300,500,600,700,800,900,100' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Aladin' rel='stylesheet' type='text/css'>
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect dns-prefetch" href="https://cloudfront.safaribookings.com" crossorigin>
@@ -26,7 +28,7 @@
     <link rel="dns-prefetch" href="https://www.google-analytics.com" crossorigin>
     <link rel="dns-prefetch" href="https://stats.g.doubleclick.net" crossorigin>
     <link rel="dns-prefetch" href="https://ampcid.google.com" crossorigin>
- 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 
@@ -71,7 +73,7 @@
     <!-- swiper js link -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <!-- custom js file js -->
-    <script src="./js/script.js"></script>
+    <script src="../js/script.js"></script>
     <!-- script for bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script>
@@ -100,32 +102,12 @@
             // },
         });
     </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
 
-
-
-
-
-
-
-
-    <!-- </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Destinations
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">South Africa</a></li>
-              <li><a class="dropdown-item" href="#">Rwanda</a></li>
-              <li><a class="dropdown-item" href="#">Egypt</a></li>
-              <li><a class="dropdown-item" href="#">Cameroon</a></li>
-              <li><a class="dropdown-item" href="#">Mali</a></li>
-              <li><a class="dropdown-item" href="#">Mauritius</a></li>
-              <li><a class="dropdown-item" href="#">Tanzania</a></li>
-              <li><a class="dropdown-item" href="#">Uganda</a></li>
-            </ul>
-          </li> -->
 </body>
 
 </html>

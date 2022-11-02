@@ -103,7 +103,7 @@ align-items: center;
   position: relative;
   width: 100%;
   height: 550px;
-  display: inline-flex;
+  display: flex;
   justify-content: space-around;
 
 }
@@ -119,6 +119,14 @@ align-items: center;
   margin: 5px;
   overflow: auto;
   justify-content: space-around;
+}
+.Places .div1{
+  flex: left;
+  width: 45%;
+}
+.Places .div2{
+  flex: right;
+  width: 45%;
 }
 
 .Places p {
