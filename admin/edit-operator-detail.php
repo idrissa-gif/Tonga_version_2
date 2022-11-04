@@ -130,6 +130,46 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                 <div class="form-group-inner">
                                   <div class="row">
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                      <label class="login2 pull-right pull-right-pro">Operator Offices</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                      <input type="text" name="brandname" id="brandname" value="<?php echo $row->OperatorOffice; ?>" required="true" class="form-control" />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group-inner">
+                                  <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                      <label class="login2 pull-right pull-right-pro">Operator Size</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                      <input type="text" name="brandname" id="brandname" value="<?php echo $row->size; ?>" required="true" class="form-control" />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group-inner">
+                                  <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                      <label class="login2 pull-right pull-right-pro">Tour Type</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                      <input type="text" name="brandname" id="brandname" value="<?php echo $row->tour_type; ?>" required="true" class="form-control" />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group-inner">
+                                  <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                      <label class="login2 pull-right pull-right-pro">Destinations</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                      <input type="text" name="brandname" id="brandname" value="<?php echo $row->destinations; ?>" required="true" class="form-control" />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group-inner">
+                                  <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                       <label class="login2 pull-right pull-right-pro">Operator Logo</label>
                                     </div>
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">

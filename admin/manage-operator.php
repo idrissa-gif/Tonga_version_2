@@ -5,7 +5,14 @@ include('includes/dbconnection.php');
 if (strlen($_SESSION['ofsmsaid'] == 0)) {
     header('location:logout.php');
 } else {
-
+    if (isset($_GET['delid'])) {
+        $id = intval($_GET['delid']);
+        $count = $dbh->prepare("DELETE FROM tbloperator WHERE ID=:id");
+        $count->bindParam(":id", $id, PDO::PARAM_INT);
+        $count->execute();
+        echo "<script>alert('Data deleted');</script>";
+        echo "<script>window.location.href ='manage-operator.php'</script>";
+    }
 ?>
     <!doctype html>
     <html class="no-js" lang="en">
@@ -114,7 +121,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                                     <th data-field="type">Tour Type</th>
                                                     <th data-field="company">Creation Date</th>
 
-                                                    <th data-field="action">Action</th>
+              
                                                     <th>Setting</th>
                                                 </tr>
                                             </thead>
@@ -138,8 +145,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                                             <td><?php echo htmlentities($row->tour_type); ?></td>
                                                             <td><?php echo htmlentities($row->destinations); ?></td>
                                                             <td><?php echo htmlentities($row->CreationDate); ?></td>
-                                                            <td><a href="edit-operator-detail.php?editid=<?php echo htmlentities($row->ID); ?>">Edit Details</a></td>
-                                                            <td><a href="edit-products-detail.php?editid=<?php echo htmlentities($row->ID); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a><a href="manage-products.php?delid=<?php echo htmlentities($row->ID); ?>" onclick="return confirm('Do you really want to Delete ?');"> <i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                                            <td><a href="edit-operator-detail.php?editid=<?php echo htmlentities($row->ID); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a><a href="manage-operator.php?delid=<?php echo htmlentities($row->ID); ?>" onclick="return confirm('Do you really want to Delete ?');"> <i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                                                         </tr>
                                                 <?php $cnt = $cnt + 1;
                                                     }
