@@ -5,15 +5,6 @@ include('includes/dbconnection.php');
 if (strlen($_SESSION['ofsmsaid'] == 0)) {
     header('location:logout.php');
 } else {
-    // Code for deleting product
-    if (isset($_GET['delid'])) {
-        $id = intval($_GET['delid']);
-        $count = $dbh->prepare("DELETE FROM tblproducts WHERE ID=:id");
-        $count->bindParam(":id", $id, PDO::PARAM_INT);
-        $count->execute();
-        echo "<script>alert('Data deleted');</script>";
-        echo "<script>window.location.href ='manage-products.php'</script>";
-    }
 
 ?>
     <!doctype html>
@@ -21,7 +12,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
     <head>
 
-        <title>Manage Products | Online Furniture Store Management System</title>
+        <title>Tonga Management System | Manage Operator</title>
 
         <!-- Google Fonts
     ============================================ -->
@@ -99,30 +90,37 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                             <div class="sparkline13-list">
                                 <div class="sparkline13-hd">
                                     <div class="main-sparkline13-hd">
-                                        <h1>Manage <span class="table-project-n">Furniture</span> Products</h1>
+                                        <h1>Manage <span class="table-project-n">Operator</span></h1>
                                     </div>
                                 </div>
                                 <div class="sparkline13-graph">
                                     <div class="datatable-dashv1-list custom-datatable-overright">
-
-                                        <table id="table" data-toggle="table" data-pagination="true" data-show-pagination-switch="true" data-search="true" data-show-columns="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-click-to-select="true" data-toolbar="#toolbar" data-show-export="true">
+                                        <div id="toolbar">
+                                            <select class="form-control">
+                                                <option value="">Export Basic</option>
+                                                <option value="all">Export All</option>
+                                                <option value="selected">Export Selected</option>
+                                            </select>
+                                        </div>
+                                        <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                             <thead>
                                                 <tr>
+                                                    <th data-field="state" data-checkbox="true"></th>
+                                                    <th data-field="id">S.NO</th>
+                                                    <th data-field="name">Operator Name</th>
+                                                    <th data-field="office">Operator Offices</th>
+                                                    <th data-field="size">Size</th>
+                                                    <th data-field="destination">Destination</th>
+                                                    <th data-field="type">Tour Type</th>
+                                                    <th data-field="company">Creation Date</th>
 
-                                                    <th>S.NO</th>
-                                                    <th>Image</th>
-                                                    <th>Product Title</th>
-                                                    <th>MRP</th>
-                                                    <th>Selling Price</th>
-                                                    <th>Quantity</th>
-                                                    <th>Stock</th>
-
+                                                    <th data-field="action">Action</th>
                                                     <th>Setting</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT * from tblproducts";
+                                                $sql = "SELECT * from tbloperator";
                                                 $query = $dbh->prepare($sql);
                                                 $query->execute();
                                                 $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -132,18 +130,16 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                                     foreach ($results as $row) {               ?>
 
                                                         <tr>
-
+                                                            <td></td>
                                                             <td><?php echo htmlentities($cnt); ?></td>
-                                                            <td><img src="images/<?php echo $row->Image; ?>" width="100" height="100" value="<?php echo $row->Image; ?>"></td>
-                                                            <td><?php echo htmlentities($row->ProductTitle); ?></td>
-                                                            <td><?php echo htmlentities($row->RegularPrice); ?></td>
-                                                            <td><?php echo htmlentities($row->SalePrice); ?></td>
-                                                            <td><?php echo htmlentities($row->Quantity); ?></td>
-                                                            <td><?php echo htmlentities($row->Availability); ?></td>
-
+                                                            <td><?php echo htmlentities($row->OperatorName); ?></td>
+                                                            <td><?php echo htmlentities($row->OperatorOffice); ?></td>
+                                                            <td><?php echo htmlentities($row->size); ?></td>
+                                                            <td><?php echo htmlentities($row->tour_type); ?></td>
+                                                            <td><?php echo htmlentities($row->destinations); ?></td>
+                                                            <td><?php echo htmlentities($row->CreationDate); ?></td>
+                                                            <td><a href="edit-operator-detail.php?editid=<?php echo htmlentities($row->ID); ?>">Edit Details</a></td>
                                                             <td><a href="edit-products-detail.php?editid=<?php echo htmlentities($row->ID); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a><a href="manage-products.php?delid=<?php echo htmlentities($row->ID); ?>" onclick="return confirm('Do you really want to Delete ?');"> <i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-
-
                                                         </tr>
                                                 <?php $cnt = $cnt + 1;
                                                     }

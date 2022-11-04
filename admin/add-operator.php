@@ -7,22 +7,40 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 } else {
   if (isset($_POST['submit'])) {
 
-    $eid = $_GET['editid'];
-    $images = $_FILES["images"]["name"];
-    $extension = substr($images, strlen($images) - 4, strlen($images));
-    $allowed_extensions = array(".jpg", "jpeg", ".png", ".gif", ".pdf");
+    $ofsmsaid = $_SESSION['ofsmsaid'];
+    $opname = $_POST['operatorname'];
+    $office = $_POST['operatoroffice'];
+    $size = $_POST['operatorsize'];
+    $destination=$_POST['destinations'];
+    $tourType = $_POST['tourtype'];
+    
+    $logo = $_FILES["logo"]["name"];
+    $extension = substr($logo, strlen($logo) - 4, strlen($logo));
+    $allowed_extensions = array(".jpg", "jpeg", ".png", ".gif");
     if (!in_array($extension, $allowed_extensions)) {
-      echo "<script>alert('Brand Image has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
+      echo "<script>alert('Logo has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
     } else {
-      $images = md5($images) . time() . $extension;
-      move_uploaded_file($_FILES["images"]["tmp_name"], "images/" . $images);
-      $sql = "update tbloperator set Logo=:images where ID=:eid";
+      $logo = md5($logo) . time() . $extension;
+      move_uploaded_file($_FILES["logo"]["tmp_name"], "images/" . $logo);
+      $sql = "insert into tbloperator(OperatorName,Logo,OperatorOffice,size,tour_type,destinations) values(:opname,:logo,:operatoroffice,:size,:tour_type,:destination)";
+
       $query = $dbh->prepare($sql);
-      $query->bindParam(':images', $images, PDO::PARAM_STR);
-      $query->bindParam(':eid', $eid, PDO::PARAM_STR);
+      $query->bindParam(':opname', $opname, PDO::PARAM_STR);
+      $query->bindParam(':logo', $logo, PDO::PARAM_STR);
+      $query->bindParam(':operatoroffice', $office, PDO::PARAM_STR);
+      $query->bindParam(':size', $size, PDO::PARAM_STR);
+      $query->bindParam(':tour_type', $tourType, PDO::PARAM_STR);
+      $query->bindParam(':destination', $destination, PDO::PARAM_STR);
+
       $query->execute();
 
-      echo '<script>alert("Operator Image has been updated")</script>';
+      $LastInsertId = $dbh->lastInsertId();
+      if ($LastInsertId > 0) {
+        echo '<script>alert("Operator has been added.")</script>';
+        echo "<script>window.location.href ='add-operator.php'</script>";
+      } else {
+        echo '<script>alert("Something Went Wrong. Please try again")</script>';
+      }
     }
   }
 ?>
@@ -31,7 +49,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
   <head>
 
-    <title>Update Operator Image | Tonga Management System</title>
+    <title>ADD Operator | Tonga Management System</title>
 
     <!-- Google Fonts
 		============================================ -->
@@ -105,7 +123,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
               <div class="sparkline12-list">
                 <div class="sparkline12-hd">
                   <div class="main-sparkline12-hd">
-                    <h1>Update Operator Image</h1>
+                    <h1>Add Operators</h1>
                   </div>
                 </div>
                 <div class="sparkline12-graph">
@@ -114,62 +132,86 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="all-form-element-inner">
                           <form action="#" method="post" enctype="multipart/form-data">
-                            <?php
-                            $eid = $_GET['editid'];
-                            $sql = "SELECT * from  tbloperator where ID=$eid";
-                            $query = $dbh->prepare($sql);
-                            $query->execute();
-                            $results = $query->fetchAll(PDO::FETCH_OBJ);
-                            $cnt = 1;
-                            if ($query->rowCount() > 0) {
-                              foreach ($results as $row) {               ?>
-                                <div class="form-group-inner">
-                                  <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                      <label class="login2 pull-right pull-right-pro">Operator Name</label>
-                                    </div>
-                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                      <input type="text" name="brandname" id="brandname" value="<?php echo $row->OperatorName; ?>" readonly="true" class="form-control" />
-                                    </div>
-                                  </div>
+                            <div class="form-group-inner">
+                              <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                  <label class="login2 pull-right pull-right-pro">Operator Name</label>
                                 </div>
-                                <div class="form-group-inner">
-                                  <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                      <label class="login2 pull-right pull-right-pro">Old Operator Logo</label>
-                                    </div>
-                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                      <img src="images/<?php echo $row->Logo; ?>" width="100" height="100" value="<?php echo $row->Logo; ?>">
-                                    </div>
-                                  </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                  <input type="text" name="operatorname" id="operatorname" value="" required="true" class="form-control" />
                                 </div>
-                                <div class="form-group-inner">
-                                  <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                      <label class="login2 pull-right pull-right-pro">New Operator Logo</label>
-                                    </div>
-                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                      <input type="file" class="form-control" id="" name="images" value="" required='true'>
-                                    </div>
-                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-inner">
+                              <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                  <label class="login2 pull-right pull-right-pro">Operator Offices</label>
                                 </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                  <input type="text" name="operatoroffice" id="operatoroffice" value="" required="true" class="form-control" />
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form-group-inner">
+                              <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                  <label class="login2 pull-right pull-right-pro">Operator Size</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                  <input type="text" name="operatorsize" id="operatorsize" value="" required="true" class="form-control" />
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form-group-inner">
+                              <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                  <label class="login2 pull-right pull-right-pro">Tour Types</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                  <input type="text" name="tourtype" id="tourtype" value="" required="true" class="form-control" />
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form-group-inner">
+                              <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                  <label class="login2 pull-right pull-right-pro">Destinations</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                  <input type="text" name="destinations" id="destinations" value="" required="true" class="form-control" />
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form-group-inner">
+                              <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                  <label class="login2 pull-right pull-right-pro">Operator Logo</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                  <input type="file" name="logo" required="true" id="logo" class="form-control" />
+                                </div>
+                              </div>
+                            </div>
+
                         </div>
-                    <?php $cnt = $cnt + 1;
-                              }
-                            } ?>
-                    <div class="form-group-inner">
-                      <div class="login-btn-inner">
-                        <div class="row">
-                          <div class="col-lg-3"></div>
-                          <div class="col-lg-9">
-                            <div class="login-horizental cancel-wp pull-left">
-                              <button class="btn btn-sm btn-primary login-submit-cs" type="submit" name="submit" id="submit">Update</button>
+
+                        <div class="form-group-inner">
+                          <div class="login-btn-inner">
+                            <div class="row">
+                              <div class="col-lg-3"></div>
+                              <div class="col-lg-9">
+                                <div class="login-horizental cancel-wp pull-left">
+                                  <button class="btn btn-sm btn-primary login-submit-cs" type="submit" name="submit" id="submit">Add</button>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    </form>
+                        </form>
                       </div>
                     </div>
                   </div>

@@ -2,54 +2,31 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['ofsmsaid']==0)) {
+if (strlen($_SESSION['ofsmsaid'] == 0)) {
   header('location:logout.php');
-  } else{
-    if(isset($_POST['submit']))
-  {
+} else {
+  if (isset($_POST['submit'])) {
 
-$ofsmsaid=$_SESSION['ofsmsaid'];
- $bname=$_POST['brandname'];
-$logo=$_FILES["logo"]["name"];
-$extension = substr($logo,strlen($logo)-4,strlen($logo));
-$allowed_extensions = array(".jpg","jpeg",".png",".gif");
-if(!in_array($extension,$allowed_extensions))
-{
-echo "<script>alert('Logo has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
-}
-else
-{
+    $ofsmsaid = $_SESSION['ofsmsaid'];
+    $opname = $_POST['brandname'];
+    $eid = $_GET['editid'];
+    $sql = "update tbloperator set OperatorName=:opname where ID=:eid";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':opname', $opname, PDO::PARAM_STR);
+    $query->bindParam(':eid', $eid, PDO::PARAM_STR);
 
-$logo=md5($logo).time().$extension;
- move_uploaded_file($_FILES["logo"]["tmp_name"],"images/".$logo);
-$sql="insert into tblbrand(BrandName,Logo)values(:bname,:logo)";
-$query=$dbh->prepare($sql);
-$query->bindParam(':bname',$bname,PDO::PARAM_STR);
-$query->bindParam(':logo',$logo,PDO::PARAM_STR);
+    $query->execute();
 
- $query->execute();
-
-   $LastInsertId=$dbh->lastInsertId();
-   if ($LastInsertId>0) {
-    echo '<script>alert("Brand has been added.")</script>';
-echo "<script>window.location.href ='add-brand.php'</script>";
+    echo '<script>alert("Operator name has been updated")</script>';
   }
-  else
-    {
-         echo '<script>alert("Something Went Wrong. Please try again")</script>';
-    }
-
-  
-}
-}
 ?>
-<!doctype html>
-<html class="no-js" lang="en">
+  <!doctype html>
+  <html class="no-js" lang="en">
 
-<head>
-   
-    <title>ADD Brand | Online Furniture Store Management System</title>
-    
+  <head>
+
+    <title>Update Operator | Tonga Management System</title>
+
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet">
@@ -105,82 +82,92 @@ echo "<script>window.location.href ='add-brand.php'</script>";
     <!-- modernizr JS
 		============================================ -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-</head>
+  </head>
 
-<body>
-   
-   <?php include_once('includes/sidebar.php');?>
+  <body>
+
+    <?php include_once('includes/sidebar.php'); ?>
     <!-- Start Welcome area -->
     <div class="all-content-wrapper">
-        <?php include_once('includes/header.php');?>
-        
-        <!-- Basic Form Start -->
-        <div class="basic-form-area mg-tb-15">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="sparkline12-list">
-                            <div class="sparkline12-hd">
-                                <div class="main-sparkline12-hd">
-                                    <h1>Add Brands</h1>
-                                </div>
-                            </div>
-                            <div class="sparkline12-graph">
-                             <div class="basic-login-form-ad">
-                             <div class="row">
-                               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                               <div class="all-form-element-inner">
-                               <form action="#" method="post" enctype="multipart/form-data">
-                                 <div class="form-group-inner">
-                                <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                 <label class="login2 pull-right pull-right-pro">Brand Name</label>
-                                 </div>
-                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                 <input type="text" name="brandname" id="brandname" value="" required="true" 
-                                 class="form-control" />
-                               </div>
-                                </div>
-                                </div>
-                                 <div class="form-group-inner">
+      <?php include_once('includes/header.php'); ?>
+
+      <!-- Basic Form Start -->
+      <div class="basic-form-area mg-tb-15">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="sparkline12-list">
+                <div class="sparkline12-hd">
+                  <div class="main-sparkline12-hd">
+                    <h1>Update Brands</h1>
+                  </div>
+                </div>
+                <div class="sparkline12-graph">
+                  <div class="basic-login-form-ad">
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="all-form-element-inner">
+                          <form action="#" method="post" enctype="multipart/form-data">
+                            <?php
+                            $eid = $_GET['editid'];
+                            $sql = "SELECT * from  tbloperator where ID=$eid";
+                            $query = $dbh->prepare($sql);
+                            $query->execute();
+                            $results = $query->fetchAll(PDO::FETCH_OBJ);
+                            $cnt = 1;
+                            if ($query->rowCount() > 0) {
+                              foreach ($results as $row) {               ?>
+                                <div class="form-group-inner">
                                   <div class="row">
-                                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label class="login2 pull-right pull-right-pro">Brand Logo</label>
-                                                            </div>
-                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                 <input type="file" name="logo" required="true" id="logo" class="form-control" />
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                      <label class="login2 pull-right pull-right-pro">Operator Name</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                      <input type="text" name="brandname" id="brandname" value="<?php echo $row->OperatorName; ?>" required="true" class="form-control" />
+                                    </div>
                                   </div>
-                                 </div>
-                                 </div>
-                                
-                               </div>
-                                
-                          <div class="form-group-inner">
-                          <div class="login-btn-inner">
-                          <div class="row">
+                                </div>
+                                <div class="form-group-inner">
+                                  <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                      <label class="login2 pull-right pull-right-pro">Operator Logo</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                      <img src="images/<?php echo $row->Logo; ?>" width="100" height="100" value="<?php echo $row->Logo; ?>"><a href="changeimage.php?editid=<?php echo $row->ID; ?>"> &nbsp; Edit Image</a>
+                                    </div>
+                                  </div>
+                                </div>
+
+                        </div>
+                    <?php $cnt = $cnt + 1;
+                              }
+                            } ?>
+                    <div class="form-group-inner">
+                      <div class="login-btn-inner">
+                        <div class="row">
                           <div class="col-lg-3"></div>
                           <div class="col-lg-9">
-                          <div class="login-horizental cancel-wp pull-left">
-                         <button class="btn btn-sm btn-primary login-submit-cs" type="submit" name="submit" id="submit">Add</button>
+                            <div class="login-horizental cancel-wp pull-left">
+                              <button class="btn btn-sm btn-primary login-submit-cs" type="submit" name="submit" id="submit">Update</button>
+                            </div>
+                          </div>
                         </div>
-                        </div>
-                       </div>
-                       </div>
-                       </div>
-                       </form>
-                       </div>
-                       </div>
-                       </div>
-                       </div>
                       </div>
-                     </div>
                     </div>
+                    </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Basic Form End-->
-        <?php include_once('includes/footer.php');?>
+    <!-- Basic Form End-->
+    <?php include_once('includes/footer.php'); ?>
     </div>
 
     <!-- jquery
@@ -228,7 +215,7 @@ echo "<script>window.location.href ='add-brand.php'</script>";
     <!-- main JS
 		============================================ -->
     <script src="js/main.js"></script>
-</body>
+  </body>
 
-</html>
+  </html>
 <?php }  ?>

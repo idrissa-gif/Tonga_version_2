@@ -2,7 +2,7 @@
      <div class="row">
          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
              <div class="logo-pro">
-                 <a href="dashboard.php"><img class="main-logo" src="/admin/images/logo/logo1.png" alt="" /></a>
+                 <a href="dashboard.php"><img class="main-logo" src="images/logo/tonga_main-4.png" alt="" /></a>
              </div>
          </div>
      </div>
@@ -30,7 +30,7 @@
                                          </li>
                                          <li class="nav-item"><a href="contact-us.php" class="nav-link">Contact</a>
                                          </li>
-                                         <li class="nav-item"><a href="manage-products.php" class="nav-link">Products</a>
+                                         <li class="nav-item"><a href="manage-tours.php" class="nav-link">Tours</a>
                                          </li>
                                      </ul>
                                  </div>

@@ -2,7 +2,7 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['ofsmsaid'] != 0)) {
+if (strlen($_SESSION['ofsmsaid'] == 0)) {
   header('location:logout.php');
 } else {
 
@@ -81,7 +81,7 @@ if (strlen($_SESSION['ofsmsaid'] != 0)) {
 
         <div class="product-sales-area mg-tb-30">
           <div class="container-fluid">
-            <div class="row">
+            <div class="row" style="margin-left: 150px;">
 
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="white-box analytics-info-cs mg-b-10 res-mg-t-30">
@@ -159,83 +159,48 @@ if (strlen($_SESSION['ofsmsaid'] != 0)) {
                   </ul>
                 </div>
 
+                
               </div>
+
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="white-box analytics-info-cs mg-b-10">
                   <?php
-                  $sql5 = "SELECT * from  tblorder where Status='Delivered'";
-                  $query5 = $dbh->prepare($sql5);
-                  $query5->execute();
-                  $results5 = $query5->fetchAll(PDO::FETCH_OBJ);
-                  $totdelorder = $query5->rowCount();
+                  $sql3 = "SELECT * from  tblorder where Status='Confirmed'";
+                  $query3 = $dbh->prepare($sql3);
+                  $query3->execute();
+                  $results3 = $query3->fetchAll(PDO::FETCH_OBJ);
+                  $totconorder = $query3->rowCount();
                   ?>
-                  <h3 class="box-title">Total Delivered Orders</h3>
+                  <h3 class="box-title">Total Tour Operators</h3>
                   <ul class="list-inline two-part-sp">
                     <li>
                       <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>
                     </li>
-                    <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totdelorder); ?>)</span></li>
-                    <a href="delivered-order.php"><STRONG> View Detail</STRONG></a>
+                    <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totconorder); ?>)</span></li>
+                    <a href="confirmed-order.php"><STRONG> View Detail</STRONG></a>
                   </ul>
                 </div>
-                <div class="white-box analytics-info-cs mg-b-10">
+
+                <div class="white-box analytics-info-cs">
                   <?php
-                  $sql6 = "SELECT * from  tblbrand";
-                  $query6 = $dbh->prepare($sql6);
-                  $query6->execute();
-                  $results6 = $query6->fetchAll(PDO::FETCH_OBJ);
-                  $totbrand = $query6->rowCount();
+                  $sql4 = "SELECT * from  tblproducts";
+                  $query4 = $dbh->prepare($sql4);
+                  $query4->execute();
+                  $results4 = $query4->fetchAll(PDO::FETCH_OBJ);
+                  $totproduct = $query4->rowCount();
                   ?>
-                  <h3 class="box-title">Total Brand</h3>
+                  <h3 class="box-title">Total Books</h3>
                   <ul class="list-inline two-part-sp">
                     <li>
                       <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>
                     </li>
-                    <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totbrand); ?>)</span></li>
-                    <a href="manage-brand.php"><STRONG> View Detail</STRONG></a>
+                    <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totproduct); ?>)</span></li>
+                    <a href="manage-products.php"><STRONG> View Detail</STRONG></a>
                   </ul>
                 </div>
 
-
+                
               </div>
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <div class="white-box analytics-info-cs mg-b-10 res-mg-t-30">
-                  <?php
-                  $sql7 = "SELECT * from  tblorder where Status='Cancelled'";
-                  $query7 = $dbh->prepare($sql7);
-                  $query7->execute();
-                  $results3 = $query7->fetchAll(PDO::FETCH_OBJ);
-                  $totcanorder = $query7->rowCount();
-                  ?>
-                  <h3 class="box-title">Total Cancelled Orders</h3>
-                  <ul class="list-inline two-part-sp">
-                    <li>
-                      <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>
-                    </li>
-                    <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totcanorder); ?>)</span></li>
-                    <a href="cancelled-order.php"><STRONG> View Detail</STRONG></a>
-                  </ul>
-                </div>
-                <div class="white-box analytics-info-cs mg-b-10">
-                  <?php
-                  $sql8 = "SELECT * from  tbluser";
-                  $query8 = $dbh->prepare($sql8);
-                  $query8->execute();
-                  $results8 = $query8->fetchAll(PDO::FETCH_OBJ);
-                  $totuser = $query8->rowCount();
-                  ?>
-                  <h3 class="box-title">Total Users</h3>
-                  <ul class="list-inline two-part-sp">
-                    <li>
-                      <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>
-                    </li>
-                    <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totuser); ?>)</span></li>
-                    <a href="reg-users.php"><STRONG> View Detail</STRONG></a>
-                  </ul>
-                </div>
-
-
-
               </div>
             </div>
           </div>
