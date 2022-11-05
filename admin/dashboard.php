@@ -98,7 +98,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                       <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>
                     </li>
                     <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totneworder); ?>)</span></li>
-                    <a href="new-order.php"><STRONG> View Detail</STRONG></a>
+                    <a href="manage-tour.php"><STRONG> View Detail</STRONG></a>
                   </ul>
                 </div>
 
@@ -117,7 +117,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                       <div><i class="fa fa-comments-o" aria-hidden="true" style="color: red"></i></div>
                     </li>
                     <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totorder); ?>)</span></li>
-                    <a href="cancelled-order.php"><STRONG> View Detail</STRONG></a>
+                    <a href="reviews.php"><STRONG> View Detail</STRONG></a>
                   </ul>
                 </div>
 
@@ -137,7 +137,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                       <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>
                     </li>
                     <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totconorder); ?>)</span></li>
-                    <a href="confirmed-order.php"><STRONG> View Detail</STRONG></a>
+                    <a href="manage-operator.php"><STRONG> View Detail</STRONG></a>
                   </ul>
                 </div>
 
@@ -155,7 +155,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                       <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>
                     </li>
                     <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totproduct); ?>)</span></li>
-                    <a href="manage-products.php"><STRONG> View Detail</STRONG></a>
+                    <a href="manage-books.php"><STRONG> View Detail</STRONG></a>
                   </ul>
                 </div>
 
@@ -177,7 +177,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                       <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>
                     </li>
                     <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totconorder); ?>)</span></li>
-                    <a href="confirmed-order.php"><STRONG> View Detail</STRONG></a>
+                    <a href="reg-users.php"><STRONG> View Detail</STRONG></a>
                   </ul>
                 </div>
 
@@ -195,7 +195,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                       <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>
                     </li>
                     <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totproduct); ?>)</span></li>
-                    <a href="manage-products.php"><STRONG> View Detail</STRONG></a>
+                    <a href="manage-country.php"><STRONG> View Detail</STRONG></a>
                   </ul>
                 </div>
 

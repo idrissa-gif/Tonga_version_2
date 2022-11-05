@@ -96,25 +96,15 @@ if (isset($_POST['login'])) {
 <body>
   <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-  <div class="color-line"></div>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="back-link back-backend">
-          <a href="..//index.php" class="btn btn-primary">Back to Home</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <![endif]-->
+ 
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
       <div class="col-md-4 col-md-4 col-sm-4 col-xs-12">
         <div class="text-center m-b-md custom-login">
-          <h3>PLEASE LOGIN TO OFSMS</h3>
-          <p>This is the best app ever!</p>
+          <h3>PLEASE LOGIN TO TONGA AGENCY SYSTEM </h3>
+          <p>THIS IS THE BEST WEBSITE</p>
         </div>
         <div class="hpanel">
           <div class="panel-body">
@@ -128,7 +118,7 @@ if (isset($_POST['login'])) {
               <div class="form-group">
                 <label>Password</label>
                 <input type="password" class="form-control" placeholder="enter your password" name="password" required="true" value="<?php if (isset($_COOKIE["userpassword"])) {
-                                                                                                                                      echo $_COOKIE["userpassword"];
+                                                                                                                                        echo $_COOKIE["userpassword"];
                                                                                                                                       } ?>">
               </div>
 

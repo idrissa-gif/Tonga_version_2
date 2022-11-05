@@ -107,16 +107,18 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                                 <tr>
                                                     <th data-field="state" data-checkbox="true"></th>
                                                     <th>S.NO</th>
-                                                    <th>Name</th>
-                                                    <th>Mobile Number</th>
-                                                    <th>Email</th>
-                                                    <th data-field="company">Reg Date</th>
+                                                    <th>Reviewer Name</th>
+                                                    <th>Message</th>
+                                                    <th>Rate</th>
+                                                    <th>Tour/operator</th>
+                                                    <th>creation date</th>
+                                                   
 
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT * from tbluser";
+                                                $sql = "SELECT * from tblreview";
                                                 $query = $dbh->prepare($sql);
                                                 $query->execute();
                                                 $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -128,10 +130,11 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                                         <tr>
                                                             <td></td>
                                                             <td><?php echo htmlentities($cnt); ?></td>
-                                                            <td><?php echo htmlentities($row->FullName); ?></td>
-                                                            <td><?php echo htmlentities($row->MobileNumber); ?></td>
-                                                            <td><?php echo htmlentities($row->Email); ?></td>
-                                                            <td><?php echo htmlentities($row->RegDate); ?></td>
+                                                            <td><?php echo htmlentities($row->reviewer_name); ?></td>
+                                                            <td><?php echo htmlentities($row->message); ?></td>
+                                                            <td><?php echo htmlentities($row->rate); ?></td>
+                                                            <td><?php echo htmlentities($row->target); ?></td>
+                                                            <td><?php echo htmlentities($row->created_date); ?></td>
                                                         </tr>
                                                 <?php $cnt = $cnt + 1;
                                                     }
