@@ -12,7 +12,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
     <head>
 
-        <title>Online Furniture Store Management System | Search Orders</title>
+        <title>Tonga Agency System | Users Reviews</title>
 
         <!-- Google Fonts
     ============================================ -->
@@ -90,43 +90,9 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                             <div class="sparkline13-list">
                                 <div class="sparkline13-hd">
                                     <div class="main-sparkline13-hd">
-                                        <h1>Search <span class="table-project-n">Orders</span></h1>
-
-                                        <form method="post" enctype="multipart/form-data">
-                                            <div class="form-group-inner">
-                                                <div class="row">
-                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                        <label class="login2 pull-right pull-right-pro">Search by Order No</label>
-                                                    </div>
-                                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                                        <input id="searchdata" type="text" name="searchdata" required="true" class="form-control" placeholder="Enter Order Number">
-                                                    </div>
-                                                </div>
-                                            </div>
-
+                                        <h1>Users <span class="table-project-n">Reviews</span></h1>
                                     </div>
-
-                                    <div class="form-group-inner">
-                                        <div class="login-btn-inner">
-                                            <div class="row">
-                                                <div class="col-lg-3"></div>
-                                                <div class="col-lg-9">
-                                                    <div class="login-horizental cancel-wp pull-left">
-                                                        <button type="submit" class="btn btn-primary" name="search" id="submit">Search</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </form>
                                 </div>
-                            </div>
-                            <?php
-                            if (isset($_POST['search'])) {
-
-                                $sdata = $_POST['searchdata'];
-                            ?>
-                                <h4 align="center">Result against "<?php echo $sdata; ?>" keyword </h4>
                                 <div class="sparkline13-graph">
                                     <div class="datatable-dashv1-list custom-datatable-overright">
                                         <div id="toolbar">
@@ -136,22 +102,21 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                                 <option value="selected">Export Selected</option>
                                             </select>
                                         </div>
-
                                         <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                             <thead>
                                                 <tr>
                                                     <th data-field="state" data-checkbox="true"></th>
                                                     <th>S.NO</th>
-                                                    <th>Order Number</th>
-                                                    <th>Full Name</th>
-                                                    <th>Contact Number</th>
-                                                    <th>Order Date</th>
-                                                    <th>Action</th>
+                                                    <th>Name</th>
+                                                    <th>Mobile Number</th>
+                                                    <th>Email</th>
+                                                    <th data-field="company">Reg Date</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT * from tblorder where OrderNumber like '$sdata%'";
+                                                $sql = "SELECT * from tbluser";
                                                 $query = $dbh->prepare($sql);
                                                 $query->execute();
                                                 $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -163,38 +128,28 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                                         <tr>
                                                             <td></td>
                                                             <td><?php echo htmlentities($cnt); ?></td>
-                                                            <td><?php echo htmlentities($row->OrderNumber); ?></td>
                                                             <td><?php echo htmlentities($row->FullName); ?></td>
-                                                            <td><?php echo htmlentities($row->ContactNumber); ?></td>
-                                                            <td><?php echo htmlentities($row->OrderDate); ?></td>
-                                                            <td><a href="view-order-detail.php?viewid=<?php echo htmlentities($row->OrderNumber); ?>">View Details</a></td>
-
+                                                            <td><?php echo htmlentities($row->MobileNumber); ?></td>
+                                                            <td><?php echo htmlentities($row->Email); ?></td>
+                                                            <td><?php echo htmlentities($row->RegDate); ?></td>
                                                         </tr>
-
+                                                <?php $cnt = $cnt + 1;
+                                                    }
+                                                } ?>
 
 
                                             </tbody>
-                                        <?php
-                                                        $cnt = $cnt + 1;
-                                                    }
-                                                } else { ?>
-                                        <tr>
-                                            <td colspan="8"> No record found against this search</td>
-
-                                        </tr>
-                                <?php }
-                                            } ?>
                                         </table>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Basic Form End-->
-        <?php include_once('includes/footer.php'); ?>
+            <!-- Basic Form End-->
+            <?php include_once('includes/footer.php'); ?>
         </div>
 
         <!-- jquery

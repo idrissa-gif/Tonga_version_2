@@ -8,11 +8,11 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
     // Code for deleting product
     if (isset($_GET['delid'])) {
         $id = intval($_GET['delid']);
-        $count = $dbh->prepare("DELETE FROM tblproducts WHERE ID=:id");
+        $count = $dbh->prepare("DELETE FROM tbltours WHERE ID=:id");
         $count->bindParam(":id", $id, PDO::PARAM_INT);
         $count->execute();
         echo "<script>alert('Data deleted');</script>";
-        echo "<script>window.location.href ='manage-products.php'</script>";
+        echo "<script>window.location.href ='manage-tour.php'</script>";
     }
 
 ?>
@@ -21,7 +21,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
     <head>
 
-        <title>Manage Products | Online Furniture Store Management System</title>
+        <title>Manage Tour | Tonga Management System</title>
 
         <!-- Google Fonts
     ============================================ -->
@@ -99,7 +99,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                             <div class="sparkline13-list">
                                 <div class="sparkline13-hd">
                                     <div class="main-sparkline13-hd">
-                                        <h1>Manage <span class="table-project-n">Furniture</span> Products</h1>
+                                        <h1>Manage <span class="table-project-n">Tour</span></h1>
                                     </div>
                                 </div>
                                 <div class="sparkline13-graph">
@@ -109,20 +109,21 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                             <thead>
                                                 <tr>
 
-                                                    <th>S.NO</th>
+                                                    <th>S.NO</th>   
+                                                    <th>Tour Title</th>
+                                                    <th>Price</th>
+                                                    <th>Operator Name</th>
+                                                    <th>Country</th>
+                                                    <th>Availability</th>
+                                                    <th>Description</th>
                                                     <th>Image</th>
-                                                    <th>Product Title</th>
-                                                    <th>MRP</th>
-                                                    <th>Selling Price</th>
-                                                    <th>Quantity</th>
-                                                    <th>Stock</th>
-
                                                     <th>Setting</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT * from tblproducts";
+                                                $sql = "SELECT * from tbltours";
                                                 $query = $dbh->prepare($sql);
                                                 $query->execute();
                                                 $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -134,14 +135,14 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                                         <tr>
 
                                                             <td><?php echo htmlentities($cnt); ?></td>
-                                                            <td><img src="images/<?php echo $row->Image; ?>" width="100" height="100" value="<?php echo $row->Image; ?>"></td>
-                                                            <td><?php echo htmlentities($row->ProductTitle); ?></td>
-                                                            <td><?php echo htmlentities($row->RegularPrice); ?></td>
-                                                            <td><?php echo htmlentities($row->SalePrice); ?></td>
-                                                            <td><?php echo htmlentities($row->Quantity); ?></td>
+                                                            <td><?php echo htmlentities($row->TourTitle); ?></td>
+                                                            <td><?php echo htmlentities($row->Price); ?></td>
+                                                            <td><?php echo htmlentities($row->OperatorName); ?></td>
+                                                            <td><?php echo htmlentities($row->Country); ?></td>
                                                             <td><?php echo htmlentities($row->Availability); ?></td>
-
-                                                            <td><a href="edit-products-detail.php?editid=<?php echo htmlentities($row->ID); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a><a href="manage-products.php?delid=<?php echo htmlentities($row->ID); ?>" onclick="return confirm('Do you really want to Delete ?');"> <i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                                            <td><?php echo htmlentities($row->description); ?></td>
+                                                            <td><img src="images/<?php echo $row->Image; ?>" width="100px" height="100px" value="<?php echo $row->Image; ?>"></td>
+                                                            <td><a href="edit-tour-detail.php?editid=<?php echo htmlentities($row->ID); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a><a href="manage-tour.php?delid=<?php echo htmlentities($row->ID); ?>" onclick="return confirm('Do you really want to Delete ?');"> <i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 
 
                                                         </tr>

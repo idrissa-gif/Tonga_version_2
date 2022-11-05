@@ -367,7 +367,7 @@ body {}
 	padding:18px 10px;
 }
 .header-right-info {
-	
+	background-color:rgb(160,203,73);
 }
 .header-right-info ul.header-right-menu li{
 	display:inline-block;

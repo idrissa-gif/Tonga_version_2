@@ -1,8 +1,3 @@
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
 <div class="left-sidebar-pro">
     <nav id="sidebar" class="">
         <div class="sidebar-header">
@@ -26,8 +21,8 @@
                     <li id="removable">
                         <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-file-pdf-o sub-icon-mg"></i> <span class="mini-click-non">Tours</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="Add" href="add-products.php"><i class="fa fa-hand-rock-o sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Add</span></a></li>
-                            <li><a title="Manage" href="manage-products.php"><i class="fa fa-plane sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Manage</span></a></li>
+                            <li><a title="Add" href="add-tour.php"><i class="fa fa-hand-rock-o sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Add</span></a></li>
+                            <li><a title="Manage" href="manage-tour.php"><i class="fa fa-plane sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Manage</span></a></li>
 
 
                         </ul>
@@ -42,15 +37,9 @@
                         </ul>
                     </li>
                     <li id="removable">
-                        <a class="has-arrow" href="#" aria-expanded="false"><i class="fa big-icon fa-comments icon-wrap"></i> <span class="mini-click-non">Reviews</span></a>
-                        <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="Login" href="order-bwdates.php"><i class="fa fa-hand-rock-o sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">B/w Dates Reviews</span></a></li>
-                            <li><a title="Register" href="sales-report.php"><i class="fa fa-plane sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Tours Reviews</span></a></li>
-
-                        </ul>
+                        <a class="" href="reviews.php" aria-expanded="false"><i class="fa big-icon fa-comments icon-wrap" aria-hidden="true"></i> <span class="mini-click-non">Reviews</span></a>
                     </li>
                     <li><a title="Dashboard" href="reg-users.php" aria-expanded="false"><i class="fa fa-users icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Reg Users</span></a></li>
-                    <li><a title="Dashboard" href="search.php" aria-expanded="false"><i class="fa fa-search icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Search</span></a></li>
                 </ul>
             </nav>
         </div>

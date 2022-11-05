@@ -2,41 +2,37 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['ofsmsaid']==0)) {
+if (strlen($_SESSION['ofsmsaid'] == 0)) {
   header('location:logout.php');
-  } else{
-    if(isset($_POST['submit']))
-  {
-   
- $eid=$_GET['editid'];
-  $images=$_FILES["images"]["name"];
-  $extension = substr($images,strlen($images)-4,strlen($images));
-$allowed_extensions = array(".jpg","jpeg",".png",".gif",".pdf");
-if(!in_array($extension,$allowed_extensions))
-{
-echo "<script>alert('Product Image has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
-}
-else
-{
-$images=md5($images).time().$extension;
- move_uploaded_file($_FILES["images"]["tmp_name"],"images/".$images);
-  $sql="update tblproducts set Image=:images where ID=:eid";
-     $query = $dbh->prepare($sql);
-     $query->bindParam(':images',$images,PDO::PARAM_STR);
-     $query->bindParam(':eid',$eid,PDO::PARAM_STR);
-$query->execute();
+} else {
+  if (isset($_POST['submit'])) {
 
-echo '<script>alert("Product Image has been updated")</script>';
-  
-}}
+    $eid = $_GET['editid'];
+    $images = $_FILES["images"]["name"];
+    $extension = substr($images, strlen($images) - 4, strlen($images));
+    $allowed_extensions = array(".jpg", "jpeg", ".png", ".gif", ".pdf");
+    if (!in_array($extension, $allowed_extensions)) {
+      echo "<script>alert('Tour Image has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
+    } else {
+      $images = md5($images) . time() . $extension;
+      move_uploaded_file($_FILES["images"]["tmp_name"], "images/" . $images);
+      $sql = "update tbltours set Image=:images where ID=:eid";
+      $query = $dbh->prepare($sql);
+      $query->bindParam(':images', $images, PDO::PARAM_STR);
+      $query->bindParam(':eid', $eid, PDO::PARAM_STR);
+      $query->execute();
+
+      echo '<script>alert("Tour Image has been updated")</script>';
+    }
+  }
 ?>
-<!doctype html>
-<html class="no-js" lang="en">
+  <!doctype html>
+  <html class="no-js" lang="en">
 
-<head>
-   
-    <title>Update Image | Online Furniture Store Management System</title>
-    
+  <head>
+
+    <title>Update Image | Tonga Management System</title>
+
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet">
@@ -92,102 +88,101 @@ echo '<script>alert("Product Image has been updated")</script>';
     <!-- modernizr JS
 		============================================ -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-</head>
+  </head>
 
-<body>
-   
-   <?php include_once('includes/sidebar.php');?>
+  <body>
+
+    <?php include_once('includes/sidebar.php'); ?>
     <!-- Start Welcome area -->
     <div class="all-content-wrapper">
-        <?php include_once('includes/header.php');?>
-        
-        <!-- Basic Form Start -->
-        <div class="basic-form-area mg-tb-15">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="sparkline12-list">
-                            <div class="sparkline12-hd">
-                                <div class="main-sparkline12-hd">
-                                    <h1>Update Image</h1>
-                                </div>
-                            </div>
-                            <div class="sparkline12-graph">
-                             <div class="basic-login-form-ad">
-                             <div class="row">
-                               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                               <div class="all-form-element-inner">
-                               <form action="#" method="post" enctype="multipart/form-data">
-                                <?php
-$eid=$_GET['editid'];
-$sql="SELECT * from  tblproducts where ID=$eid";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $row)
-{               ?>
-                                 <div class="form-group-inner">
-                                <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                 <label class="login2 pull-right pull-right-pro">Product Name</label>
-                                 </div>
-                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                 <input type="text" value="<?php  echo $row->ProductTitle;?>" readonly="true" 
-                                 class="form-control" />
-                               </div>
-                                </div>
-                                </div>
-                                 <div class="form-group-inner">
-                                  <div class="row">
-                                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label class="login2 pull-right pull-right-pro">Old Image</label>
-                                                            </div>
-                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                 <img src="images/<?php echo $row->Image;?>" width="100" height="100" value="<?php  echo $row->Image;?>">
-                                  </div>
-                                 </div>
-                                 </div>
+      <?php include_once('includes/header.php'); ?>
+
+      <!-- Basic Form Start -->
+      <div class="basic-form-area mg-tb-15">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="sparkline12-list">
+                <div class="sparkline12-hd">
+                  <div class="main-sparkline12-hd">
+                    <h1>Update Image</h1>
+                  </div>
+                </div>
+                <div class="sparkline12-graph">
+                  <div class="basic-login-form-ad">
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="all-form-element-inner">
+                          <form action="#" method="post" enctype="multipart/form-data">
+                            <?php
+                            $eid = $_GET['editid'];
+                            $sql = "SELECT * from  tbltours where ID=$eid";
+                            $query = $dbh->prepare($sql);
+                            $query->execute();
+                            $results = $query->fetchAll(PDO::FETCH_OBJ);
+                            $cnt = 1;
+                            if ($query->rowCount() > 0) {
+                              foreach ($results as $row) {               ?>
                                 <div class="form-group-inner">
                                   <div class="row">
-                                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label class="login2 pull-right pull-right-pro">New Image</label>
-                                                            </div>
-                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                <input type="file" class="form-control" id="" name="images" value="" required='true'>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                      <label class="login2 pull-right pull-right-pro">Tour Name</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                      <input type="text" value="<?php echo $row->TourTitle; ?>" readonly="true" class="form-control" />
+                                    </div>
                                   </div>
-                                 </div>
-                                 </div>
-                               </div>
-                               <?php $cnt=$cnt+1;}} ?> 
-                          <div class="form-group-inner">
-                          <div class="login-btn-inner">
-                          <div class="row">
+                                </div>
+                                <div class="form-group-inner">
+                                  <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                      <label class="login2 pull-right pull-right-pro">Old Image</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                      <img src="images/<?php echo $row->Image; ?>" width="100" height="100" value="<?php echo $row->Image; ?>">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group-inner">
+                                  <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                      <label class="login2 pull-right pull-right-pro">New Image</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                      <input type="file" class="form-control" id="" name="images" value="" required='true'>
+                                    </div>
+                                  </div>
+                                </div>
+                        </div>
+                    <?php $cnt = $cnt + 1;
+                              }
+                            } ?>
+                    <div class="form-group-inner">
+                      <div class="login-btn-inner">
+                        <div class="row">
                           <div class="col-lg-3"></div>
                           <div class="col-lg-9">
-                          <div class="login-horizental cancel-wp pull-left">
-                         <button class="btn btn-sm btn-primary login-submit-cs" type="submit" name="submit" id="submit">Update</button>
+                            <div class="login-horizental cancel-wp pull-left">
+                              <button class="btn btn-sm btn-primary login-submit-cs" type="submit" name="submit" id="submit">Update</button>
+                            </div>
+                          </div>
                         </div>
-                        </div>
-                       </div>
-                       </div>
-                       </div>
-                       </form>
-                       </div>
-                       </div>
-                       </div>
-                       </div>
                       </div>
-                     </div>
                     </div>
+                    </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Basic Form End-->
-        <?php include_once('includes/footer.php');?>
+    <!-- Basic Form End-->
+    <?php include_once('includes/footer.php'); ?>
     </div>
 
     <!-- jquery
@@ -235,7 +230,7 @@ foreach($results as $row)
     <!-- main JS
 		============================================ -->
     <script src="js/main.js"></script>
-</body>
+  </body>
 
-</html>
+  </html>
 <?php }  ?>

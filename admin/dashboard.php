@@ -86,7 +86,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="white-box analytics-info-cs mg-b-10 res-mg-t-30">
                   <?php
-                  $sql1 = "SELECT * from  tblorder where Status is null ";
+                  $sql1 = "SELECT * from  tbltours ";
                   $query1 = $dbh->prepare($sql1);
                   $query1->execute();
                   $results1 = $query1->fetchAll(PDO::FETCH_OBJ);
@@ -105,7 +105,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
                 <div class="white-box analytics-info-cs">
                   <?php
-                  $sql2 = "SELECT * from  tblorder";
+                  $sql2 = "SELECT * from  tblreview";
                   $query2 = $dbh->prepare($sql2);
                   $query2->execute();
                   $results2 = $query2->fetchAll(PDO::FETCH_OBJ);
@@ -125,7 +125,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="white-box analytics-info-cs mg-b-10">
                   <?php
-                  $sql3 = "SELECT * from  tblorder where Status='Confirmed'";
+                  $sql3 = "SELECT * from  tbloperator";
                   $query3 = $dbh->prepare($sql3);
                   $query3->execute();
                   $results3 = $query3->fetchAll(PDO::FETCH_OBJ);
@@ -143,7 +143,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
                 <div class="white-box analytics-info-cs">
                   <?php
-                  $sql4 = "SELECT * from  tblproducts";
+                  $sql4 = "SELECT * from  tbltours";
                   $query4 = $dbh->prepare($sql4);
                   $query4->execute();
                   $results4 = $query4->fetchAll(PDO::FETCH_OBJ);
@@ -165,13 +165,13 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="white-box analytics-info-cs mg-b-10">
                   <?php
-                  $sql3 = "SELECT * from  tblorder where Status='Confirmed'";
+                  $sql3 = "SELECT * from  tbluser";
                   $query3 = $dbh->prepare($sql3);
                   $query3->execute();
                   $results3 = $query3->fetchAll(PDO::FETCH_OBJ);
                   $totconorder = $query3->rowCount();
                   ?>
-                  <h3 class="box-title">Total Tour Operators</h3>
+                  <h3 class="box-title">Total Users</h3>
                   <ul class="list-inline two-part-sp">
                     <li>
                       <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>
@@ -183,13 +183,13 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
                 <div class="white-box analytics-info-cs">
                   <?php
-                  $sql4 = "SELECT * from  tblproducts";
+                  $sql4 = "SELECT * from  tbltours";
                   $query4 = $dbh->prepare($sql4);
                   $query4->execute();
                   $results4 = $query4->fetchAll(PDO::FETCH_OBJ);
                   $totproduct = $query4->rowCount();
                   ?>
-                  <h3 class="box-title">Total Books</h3>
+                  <h3 class="box-title">Total Countries</h3>
                   <ul class="list-inline two-part-sp">
                     <li>
                       <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>

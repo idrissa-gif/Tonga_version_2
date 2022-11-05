@@ -8,12 +8,20 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
   if (isset($_POST['submit'])) {
 
     $ofsmsaid = $_SESSION['ofsmsaid'];
-    $opname = $_POST['brandname'];
+    $opname = $_POST['operatorname'];
+    $destination = $_POST['destination'];
+    $type = $_POST['type'];
+    $office = $_POST['office'];
+    $size = $_POST['size'];
     $eid = $_GET['editid'];
-    $sql = "update tbloperator set OperatorName=:opname where ID=:eid";
+    $sql = "update tbloperator set OperatorName=:opname,OperatorOffice=:office,destinations=:destination,tour_type=:type,size=:size where ID=:eid";
     $query = $dbh->prepare($sql);
     $query->bindParam(':opname', $opname, PDO::PARAM_STR);
     $query->bindParam(':eid', $eid, PDO::PARAM_STR);
+    $query->bindParam(':office', $office, PDO::PARAM_STR);
+    $query->bindParam(':destination', $destination, PDO::PARAM_STR);
+    $query->bindParam(':type', $type, PDO::PARAM_STR);
+    $query->bindParam(':size', $size, PDO::PARAM_STR);
 
     $query->execute();
 
@@ -123,7 +131,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                       <label class="login2 pull-right pull-right-pro">Operator Name</label>
                                     </div>
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                      <input type="text" name="brandname" id="brandname" value="<?php echo $row->OperatorName; ?>" required="true" class="form-control" />
+                                      <input type="text" name="operatorname" id="operatorname" value="<?php echo $row->OperatorName; ?>" required="true" class="form-control" />
                                     </div>
                                   </div>
                                 </div>
@@ -133,7 +141,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                       <label class="login2 pull-right pull-right-pro">Operator Offices</label>
                                     </div>
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                      <input type="text" name="brandname" id="brandname" value="<?php echo $row->OperatorOffice; ?>" required="true" class="form-control" />
+                                      <input type="text" name="office" id="office" value="<?php echo $row->OperatorOffice; ?>" required="true" class="form-control" />
                                     </div>
                                   </div>
                                 </div>
@@ -143,7 +151,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                       <label class="login2 pull-right pull-right-pro">Operator Size</label>
                                     </div>
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                      <input type="text" name="brandname" id="brandname" value="<?php echo $row->size; ?>" required="true" class="form-control" />
+                                      <input type="text" name="size" id="size" value="<?php echo $row->size; ?>" required="true" class="form-control" />
                                     </div>
                                   </div>
                                 </div>
@@ -153,7 +161,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                       <label class="login2 pull-right pull-right-pro">Tour Type</label>
                                     </div>
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                      <input type="text" name="brandname" id="brandname" value="<?php echo $row->tour_type; ?>" required="true" class="form-control" />
+                                      <input type="text" name="type" id="type" value="<?php echo $row->tour_type; ?>" required="true" class="form-control" />
                                     </div>
                                   </div>
                                 </div>
@@ -163,7 +171,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                       <label class="login2 pull-right pull-right-pro">Destinations</label>
                                     </div>
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                      <input type="text" name="brandname" id="brandname" value="<?php echo $row->destinations; ?>" required="true" class="form-control" />
+                                      <input type="text" name="destination" id="destionation" value="<?php echo $row->destinations; ?>" required="true" class="form-control" />
                                     </div>
                                   </div>
                                 </div>

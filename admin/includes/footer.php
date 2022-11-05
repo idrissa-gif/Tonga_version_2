@@ -1,11 +1,8 @@
- <div class="footer-copyright-area">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="footer-copy-right">
-                            <p>Tonga &copy; 2022.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<footer class="bg-light text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2022 Copyright:
+    <a class="text-dark" href="#" >Tonga Agency</a>
+  </div>
+  <!-- Copyright -->
+</footer>
