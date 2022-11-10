@@ -30,8 +30,8 @@
     <link rel="dns-prefetch" href="https://ampcid.google.com" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/tour.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tour.css">
 </head>
 
 <body class="HomeBody">
@@ -40,14 +40,14 @@
     <nav class="navbar navbar-expand-lg bg-light" style="position: -webkit-sticky; position: sticky; width: 100%; top: 0; padding: 0px; z-index: 2;">
         <div id="Menubar" class="container-fluid">
 
-            <a class="navbar-brand" href="./home.html"><img src="../image/logo.jpg"></a>
+            <a class="navbar-brand" href="../tours/home.php"><img src="../image/Tonga_logo.png"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="../tours/tour.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="destinations.html">Destinations</a>
