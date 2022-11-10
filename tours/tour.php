@@ -9,10 +9,11 @@ include("../headerAndFooter/header.php"); ?>
 <div class="row">
   <?php
 
-  $query = "SELECT T.TourTitle , T.Price, T.Country , T.description , T.rate , T.Image , O.logo,  T.OperatorName FROM `tbltours` T ,`tbloperator` O where T.OperatorName=O.OperatorName";
+  $query = "SELECT T.TourTitle , T.Price, T.Country , T.description , T.rate , T.Image , O.logo,  T.OperatorName 
+            FROM `tbltours` T ,`tbloperator` O where T.OperatorName=O.OperatorName";
   $result = mysqli_query($con, $query);
   while ($row = mysqli_fetch_array($result)) {
-    
+
   ?>
 
     <div class="card col-sm-6">
