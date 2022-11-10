@@ -62,14 +62,14 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
      
       //rename tour images
-      $propic = md5($pic) . time() . $extension;
-      $propic1 = md5($pic1) . time() . $extension1;
-      $propic2 = md5($pic2) . time() . $extension2;
-      $propic3 = md5($pic3) . time() . $extension3;
-      move_uploaded_file($_FILES["image"]["tmp_name"], "images/" . $propic);
-      move_uploaded_file($_FILES["image1"]["tmp_name"], "images/" . $propic1);
-      move_uploaded_file($_FILES["image2"]["tmp_name"], "images/" . $propic2);
-      move_uploaded_file($_FILES["image3"]["tmp_name"], "images/" . $propic3);
+      // $propic = md5($pic) . time() . $extension;
+      // $propic1 = md5($pic1) . time() . $extension1;
+      // $propic2 = md5($pic2) . time() . $extension2;
+      // $propic3 = md5($pic3) . time() . $extension3;
+      // move_uploaded_file($_FILES["image"]["tmp_name"], "images/" . $propic);
+      // move_uploaded_file($_FILES["image1"]["tmp_name"], "images/" . $propic1);
+      // move_uploaded_file($_FILES["image2"]["tmp_name"], "images/" . $propic2);
+      // move_uploaded_file($_FILES["image3"]["tmp_name"], "images/" . $propic3);
 
       $sql = "insert into tbltours(TourTitle,Price,OperatorName,Country,Rate,Availability,Image,Image1,Image2,Image3,description) values(:tourtitle,:tourprice,:operatorname,:Country,:Rate,:availability,:img,:img1,:img2,:img3,:description)";
       $query = $dbh->prepare($sql);
@@ -80,10 +80,10 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
       $query->bindParam(':Rate', $Rate, PDO::PARAM_STR);
       $query->bindParam(':description', $description, PDO::PARAM_STR);
       $query->bindParam(':availability', $availability, PDO::PARAM_STR);
-      $query->bindParam(':img', $propic, PDO::PARAM_STR);
-      $query->bindParam(':img1', $propic1, PDO::PARAM_STR);
-      $query->bindParam(':img2', $propic2, PDO::PARAM_STR);
-      $query->bindParam(':img3', $propic3, PDO::PARAM_STR);
+      $query->bindParam(':img', $pic, PDO::PARAM_STR);
+      $query->bindParam(':img1', $pic1, PDO::PARAM_STR);
+      $query->bindParam(':img2', $pic2, PDO::PARAM_STR);
+      $query->bindParam(':img3', $pic3, PDO::PARAM_STR);
       $query->execute();
 
       $LastInsertId = $dbh->lastInsertId();

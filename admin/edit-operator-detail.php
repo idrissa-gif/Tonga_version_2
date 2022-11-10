@@ -107,7 +107,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
               <div class="sparkline12-list">
                 <div class="sparkline12-hd">
                   <div class="main-sparkline12-hd">
-                    <h1>Update Brands</h1>
+                    <h1>Update Operator</h1>
                   </div>
                 </div>
                 <div class="sparkline12-graph">
@@ -181,7 +181,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                       <label class="login2 pull-right pull-right-pro">Operator Logo</label>
                                     </div>
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                      <img src="images/<?php echo $row->Logo; ?>" width="100" height="100" value="<?php echo $row->Logo; ?>"><a href="changeimage.php?editid=<?php echo $row->ID; ?>"> &nbsp; Edit Image</a>
+                                      <img src="images/tours/<?php echo $row->Logo; ?>" width="100" height="100" value="<?php echo $row->Logo; ?>"><a href="changeimage.php?editid=<?php echo $row->ID; ?>"> &nbsp; Edit Image</a>
                                     </div>
                                   </div>
                                 </div>

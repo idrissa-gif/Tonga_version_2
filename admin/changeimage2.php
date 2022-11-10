@@ -14,8 +14,8 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
     if (!in_array($extension, $allowed_extensions)) {
       echo "<script>alert('Tour Image has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
     } else {
-      $images = md5($images) . time() . $extension;
-      move_uploaded_file($_FILES["images"]["tmp_name"], "images/" . $images);
+      // $images = md5($images) . time() . $extension;
+      // move_uploaded_file($_FILES["images"]["tmp_name"], "images/" . $images);
       $sql = "update tbltours set Image1=:images where ID=:eid";
       $query = $dbh->prepare($sql);
       $query->bindParam(':images', $images, PDO::PARAM_STR);
@@ -139,7 +139,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                       <label class="login2 pull-right pull-right-pro">Old Image</label>
                                     </div>
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                      <img src="images/<?php echo $row->Image1; ?>" width="100" height="100" value="<?php echo $row->Image1; ?>">
+                                      <img src="images/tours/<?php echo $row->Image1; ?>" width="100" height="100" value="<?php echo $row->Image1; ?>">
                                     </div>
                                   </div>
                                 </div>

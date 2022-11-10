@@ -13,8 +13,8 @@
     <!-- font awesome cdn link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <!-- custom css file link -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/home.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/headers/">
     <link rel="preconnect dns-prefetch" href="https://fonts.googleapis.com" crossorigin>
 
@@ -30,6 +30,8 @@
     <link rel="dns-prefetch" href="https://ampcid.google.com" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tour.css">
 </head>
 
 <body class="HomeBody">
@@ -37,7 +39,8 @@
     <!-- header section start -->
     <nav class="navbar navbar-expand-lg bg-light" style="position: -webkit-sticky; position: sticky; width: 100%; top: 0; padding: 0px; z-index: 2;">
         <div id="Menubar" class="container-fluid">
-            <a class="navbar-brand" href="./home.html">TONGA</a>
+
+            <a class="navbar-brand" href="./home.html"><img src="../image/logo.jpg"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -59,17 +62,18 @@
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                     <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                 </form>
-                <ul class="nav">
+                <!-- <ul class="nav">
                     <li class="nav-item"><a href="./login.html" class="nav-link link-dark px-2" style="background-color: #2A5BD9; border-radius: 10px ; margin-right: 10px;">Login</a></li>
                     <li class="nav-item"><a href="./register.html" class="nav-link link-dark px-2" style="background-color: #25E850; border-radius: 10px ; margin-right: 10px;">Sign up</a></li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </nav>
     <!-- header section end -->
 
 
-
+    <!-- rating.js file -->
+    <script src="js/addons/rating.js"></script>
     <!-- swiper js link -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <!-- custom js file js -->

@@ -141,7 +141,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                                             <td><?php echo htmlentities($row->Country); ?></td>
                                                             <td><?php echo htmlentities($row->Availability); ?></td>
                                                             <td><?php echo htmlentities($row->description); ?></td>
-                                                            <td><img src="images/<?php echo $row->Image; ?>" width="100px" height="100px" value="<?php echo $row->Image; ?>"></td>
+                                                            <td><img src="images/tours/<?php echo $row->Image; ?>" width="4000px" height="3000px" value="<?php echo $row->Image; ?>"></td>
                                                             <td><a href="edit-tour-detail.php?editid=<?php echo htmlentities($row->ID); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a><a href="manage-tour.php?delid=<?php echo htmlentities($row->ID); ?>" onclick="return confirm('Do you really want to Delete ?');"> <i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 
 

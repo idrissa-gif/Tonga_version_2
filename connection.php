@@ -2,7 +2,7 @@
 $dbhost = "127.0.0.1";
 $dbuser = "root";
 $dbpass ="";
-$dbname = "Tonga_travel_db";
+$dbname = "Tonga_db";
 
 /* You should enable error reporting for mysqli before attempting to make a connection */
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
@@ -28,7 +28,7 @@ if ($con -> connect_errno) {
 define('DB_HOST','localhost');
 define('DB_USER','root');
 define('DB_PASS','');
-define('DB_NAME','Tonga_travel_db');
+define('DB_NAME','Tonga_db');
 // Establish database connection.
 try
 {

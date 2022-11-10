@@ -175,7 +175,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                                                         </div>
                                                                         <div class="input-group mg-b-pro-edt">
                                                                             <label style="padding-right: 20px">Image </label>
-                                                                            <img src="images/<?php echo $row->Image; ?>" width="100" height="100" value="<?php echo $row->Image; ?>"><a href="changeimage1.php?editid=<?php echo $row->ID; ?>"> &nbsp; Edit Image</a>
+                                                                            <img src="images/tours/<?php echo $row->Image; ?>" width="100" height="100" value="<?php echo $row->Image; ?>"><a href="changeimage1.php?editid=<?php echo $row->ID; ?>"> &nbsp; Edit Image</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -207,15 +207,15 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                                                         
                                                                         <div class="input-group mg-b-pro-edt">
                                                                             <label style="padding-right: 20px">Image1 </label>
-                                                                            <img src="images/<?php echo $row->Image1; ?>" width="100" height="100" value="<?php echo $row->Image1; ?>"><a href="changeimage2.php?editid=<?php echo $row->ID; ?>"> &nbsp; Edit Image</a>
+                                                                            <img src="images/tours/<?php echo $row->Image1; ?>" width="100" height="100" value="<?php echo $row->Image1; ?>"><a href="changeimage2.php?editid=<?php echo $row->ID; ?>"> &nbsp; Edit Image</a>
                                                                         </div>
                                                                         <div class="input-group mg-b-pro-edt">
                                                                             <label style="padding-right: 20px">Image2 </label>
-                                                                            <img src="images/<?php echo $row->Image2; ?>" width="100" height="100" value="<?php echo $row->Image2; ?>"><a href="changeimage3.php?editid=<?php echo $row->ID; ?>"> &nbsp; Edit Image</a>
+                                                                            <img src="images/tours/<?php echo $row->Image2; ?>" width="100" height="100" value="<?php echo $row->Image2; ?>"><a href="changeimage3.php?editid=<?php echo $row->ID; ?>"> &nbsp; Edit Image</a>
                                                                         </div>
                                                                         <div class="input-group mg-b-pro-edt">
                                                                             <label style="padding-right: 20px">Image3 </label>
-                                                                            <img src="images/<?php echo $row->Image3; ?>" width="100" height="100" value="<?php echo $row->Image3; ?>"><a href="changeimage4.php?editid=<?php echo $row->ID; ?>"> &nbsp; Edit Image</a>
+                                                                            <img src="images/tours/<?php echo $row->Image3; ?>" width="100" height="100" value="<?php echo $row->Image3; ?>"><a href="changeimage4.php?editid=<?php echo $row->ID; ?>"> &nbsp; Edit Image</a>
                                                                         </div>
                                                                     </div>
 

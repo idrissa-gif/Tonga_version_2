@@ -20,8 +20,8 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
     if (!in_array($extension, $allowed_extensions)) {
       echo "<script>alert('Logo has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
     } else {
-      $logo = md5($logo) . time() . $extension;
-      move_uploaded_file($_FILES["logo"]["tmp_name"], "images/" . $logo);
+      //$logo = md5($logo) . time() . $extension;
+      //move_uploaded_file($_FILES["logo"]["tmp_name"], "images/" . $logo);
       $sql = "insert into tbloperator(OperatorName,Logo,OperatorOffice,size,tour_type,destinations) values(:opname,:logo,:operatoroffice,:size,:tour_type,:destination)";
 
       $query = $dbh->prepare($sql);
