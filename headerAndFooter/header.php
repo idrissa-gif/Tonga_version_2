@@ -47,13 +47,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../tours/tour.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="../home.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="destinations.html">Destinations</a>
+                        <a class="nav-link active" aria-current="page" href="../destination.php">Destinations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="Tour_Operators .html">Tour Operators</a>
+                        <a class="nav-link active" aria-current="page" href="../tours/tour.php">Tours</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="contact_us.html">Contact us</a>

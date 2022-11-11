@@ -149,3 +149,17 @@ color: #fff;
     letter-spacing: 3px;
     transition: 0.5s;
   }
+
+  .card-img-body{
+    width: 100vh;
+    height: 100vh;
+    object-fit: cover;
+}
+.btn{
+  align-items: baseline;
+}
+
+.card-title{
+ font:lighter;
+
+}

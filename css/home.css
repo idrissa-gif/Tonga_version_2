@@ -115,7 +115,7 @@ align-items: center;
   display: flex;
   text-align: center;
   border-radius: 12px;
-  background-color: #FFC0CB;
+  /* background-color: #FFC0CB; */
   margin: 5px;
   overflow: auto;
   justify-content: space-around;
