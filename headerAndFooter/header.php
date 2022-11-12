@@ -40,7 +40,11 @@
     <nav class="navbar navbar-expand-lg bg-light" style="position: -webkit-sticky; position: sticky; width: 100%; top: 0; padding: 0px; z-index: 2;">
         <div id="Menubar" class="container-fluid">
 
+<<<<<<< HEAD
             <a class="navbar-brand" href="../tours/home.php"><img src="../image/Tonga_logo.png"></a>
+=======
+            <a class="navbar-brand" href="./home.html"><img src="../Tonga_logo.png"></a>
+>>>>>>> 547c3d7 (updated)
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
