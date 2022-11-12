@@ -36,13 +36,13 @@
         <!-- <h5 class="card-title">You visit: <text class="no-bold"><?php echo $row['rate'] ?></text></h5> -->
         <!-- <h5 class="card-title">Reviews: <text class="no-bold"><?php echo $row['rate'] ?></text></h5> -->
 
-        <a href="krugerpark.html" class="btn btn-primary">Explore</a>
+        <a href="./tours/tour-page.php" class="btn btn-primary">Explore</a>
       </div>
 
       <div class="card-footerg">
         <p>Offered By
         <p>
-          <img class="logo" src="../image/tours/<?php echo $row['logo'] ?>">
+          <img class="logo" src="./image/tours/<?php echo $row['logo'] ?>">
           <small class="text-muted"><?php echo $row['OperatorName'] ?></small>
       </div>
 
