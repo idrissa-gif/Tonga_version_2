@@ -23,7 +23,7 @@
 <body class="HomeBody">
 
   <!-- footer session start  -->
-  <section class="footer" style="background: url(./image/footer-bg.jpg) no-repeat;">
+  <section class="footer" style="background: url(../image/footer-bg.jpg) no-repeat;">
     <div class="box-container">
 
       <div class="box">

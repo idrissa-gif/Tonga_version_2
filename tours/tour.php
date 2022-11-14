@@ -9,12 +9,9 @@ include("../headerAndFooter/header.php"); ?>
 <div class="row">
   <?php
 
-<<<<<<< HEAD
   $query = "SELECT T.TourTitle , T.Price, T.Country , T.description , T.rate , T.Image , O.logo,  T.OperatorName 
             FROM `tbltours` T ,`tbloperator` O where T.OperatorName=O.OperatorName";
-=======
   $query = "SELECT T.ID , T.TourTitle , T.Price, T.Country , T.description , T.rate , T.Image , O.logo,  T.OperatorName FROM `tbltours` T ,`tbloperator` O where T.OperatorName=O.OperatorName";
->>>>>>> 449747f (updated)
   $result = mysqli_query($con, $query);
   while ($row = mysqli_fetch_array($result)) {
 
@@ -28,13 +25,10 @@ include("../headerAndFooter/header.php"); ?>
 
         <h4 class="card-tour-title"><?php echo $row['TourTitle'] ?></h4>
         <h5 class="card-price"><?php echo $row['Price'] ?></h5>
-<<<<<<< HEAD
         <h5 class="card-title">Country: <text class="no-bold"><?php echo $row['Country'] ?></text></h5>
         <p class="card-text"><?php echo $row['description'] ?></p>
-=======
         <h5 class="card-title"><?php echo $row['Country'] ?>: <text class="no-bold"><?php echo $row['country'] ?></text></h5>
-       
->>>>>>> 449747f (updated)
+    
         <h5 class="card-title">You visit: <text class="no-bold"><?php echo $row['rate'] ?></text></h5>
         <h5 class="card-title">Reviews: <text class="no-bold"><?php echo $row['rate'] ?></text></h5>
 
