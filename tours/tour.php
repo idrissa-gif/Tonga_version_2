@@ -27,7 +27,7 @@ include("../headerAndFooter/header.php"); ?>
         <h5 class="card-price"><?php echo $row['Price'] ?></h5>
         <h5 class="card-title">Country: <text class="no-bold"><?php echo $row['Country'] ?></text></h5>
         <p class="card-text"><?php echo $row['description'] ?></p>
-        <h5 class="card-title"><?php echo $row['Country'] ?>: <text class="no-bold"><?php echo $row['country'] ?></text></h5>
+        <h5 class="card-title">Country: <text class="no-bold"><?php echo $row['Country'] ?></text></h5>
     
         <h5 class="card-title">You visit: <text class="no-bold"><?php echo $row['rate'] ?></text></h5>
         <h5 class="card-title">Reviews: <text class="no-bold"><?php echo $row['rate'] ?></text></h5>
