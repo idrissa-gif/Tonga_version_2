@@ -52,7 +52,7 @@
                         <a class="nav-link active" aria-current="page" href="./destination.php">Destinations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./tours/tour.php">Tours</a>
+                        <a class="nav-link active" aria-current="page" href="./tour.php">Tours</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="">Contact us</a>

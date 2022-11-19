@@ -11,9 +11,9 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
     $opname = $_POST['operatorname'];
     $office = $_POST['operatoroffice'];
     $size = $_POST['operatorsize'];
-    $destination=$_POST['destinations'];
+    $destination = $_POST['destinations'];
     $tourType = $_POST['tourtype'];
-    
+
     $logo = $_FILES["logo"]["name"];
     $extension = substr($logo, strlen($logo) - 4, strlen($logo));
     $allowed_extensions = array(".jpg", "jpeg", ".png", ".gif");
@@ -145,14 +145,28 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                             <div class="form-group-inner">
                               <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label class="login2 pull-right pull-right-pro">Operator Offices</label>
+                                  <label class="login2 pull-right pull-right-pro">Operator Office</label>
                                 </div>
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                  <input type="text" name="operatoroffice" id="operatoroffice" value="" required="true" class="form-control" />
-                                </div>
+                                <div class="input-group mg-b-pro-edt">
+                              <span class="input-group-addon"><i class="fa fa-flag-o" aria-hidden="true"></i></span>
+                              <select name="operatoroffice" id="operatoroffice" required="true" class="form-control pro-edt-select form-control-primary">
+                                <option value="opt1">Select Country</option>
+                                <?php
+
+                                $sql5 = "SELECT * from tblcountries";
+                                $query5 = $dbh->prepare($sql5);
+                                $query5->execute();
+                                $result5 = $query5->fetchAll(PDO::FETCH_OBJ);
+
+                                foreach ($result5 as $row2) {
+                                ?>
+                                  <option value="<?php echo htmlentities($row2->country_name); ?>"><?php echo htmlentities($row2->country_name); ?></option>
+                                <?php } ?>
+                              </select>
+                            </div>
                               </div>
                             </div>
-
+                            
                             <div class="form-group-inner">
                               <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">

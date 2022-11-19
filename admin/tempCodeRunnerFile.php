@@ -142,8 +142,8 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                                             <td><?php echo htmlentities($row->OperatorName); ?></td>
                                                             <td><?php echo htmlentities($row->OperatorOffice); ?></td>
                                                             <td><?php echo htmlentities($row->size); ?></td>
-                                                            <td><?php echo htmlentities($row->destinations); ?></td>
                                                             <td><?php echo htmlentities($row->tour_type); ?></td>
+                                                            <td><?php echo htmlentities($row->destinations); ?></td>
                                                             <td><?php echo htmlentities($row->CreationDate); ?></td>
                                                             <td><a href="edit-operator-detail.php?editid=<?php echo htmlentities($row->ID); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a><a href="manage-operator.php?delid=<?php echo htmlentities($row->ID); ?>" onclick="return confirm('Do you really want to Delete ?');"> <i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                                                         </tr>

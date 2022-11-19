@@ -9,35 +9,16 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
     $ofsmsaid = $_SESSION['ofsmsaid'];
     $countryname = $_POST['countryname'];
-    $office = $_POST['operatoroffice'];
-    $size = $_POST['operatorsize'];
-    $destination = $_POST['destinations'];
-    $tourType = $_POST['tourtype'];
+    $eid = $_GET['editid'];
+    $sql = "update tblcountries set country_name=:countryname where country_name=:eid";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':eid', $eid, PDO::PARAM_STR);
+    $query->bindParam(':countryname',$countryname,PDO::PARAM_STR);
+    $query->execute();
 
-    $logo = $_FILES["logo"]["name"];
-    $extension = substr($logo, strlen($logo) - 4, strlen($logo));
-    $allowed_extensions = array(".jpg", "jpeg", ".png", ".gif");
-    if (!in_array($extension, $allowed_extensions)) {
-      echo "<script>alert('Logo has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
-    } else {
-      //$logo = md5($logo) . time() . $extension;
-      //move_uploaded_file($_FILES["logo"]["tmp_name"], "images/" . $logo);
-      $sql = "insert into  tblcountries (country_name,image) values(:countryname,:logo)";
-
-      $query = $dbh->prepare($sql);
-      $query->bindParam(':countryname', $countryname, PDO::PARAM_STR);
-      $query->bindParam(':logo', $logo, PDO::PARAM_STR);
-
-      $query->execute();
-
-      $LastInsertId = $dbh->lastInsertId();
-      if ($LastInsertId >= 0) {
-        echo '<script>alert("Country has been added.")</script>';
-        echo "<script>window.location.href ='add-countries.php'</script>";
-      } else {
-        echo '<script>alert("Something Went Wrong. Please try again")</script>';
-      }
-    }
+    echo '<script>alert("Operator name has been updated")</script>';
+    echo "<script>window.location.href ='edit-countries-detail.php?$eid'</script>";
+    
   }
 ?>
   <!doctype html>
@@ -45,7 +26,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
   <head>
 
-    <title>ADD Country | Tonga Management System</title>
+    <title>Update Country | Tonga Management System</title>
 
     <!-- Google Fonts
 		============================================ -->
@@ -119,7 +100,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
               <div class="sparkline12-list">
                 <div class="sparkline12-hd">
                   <div class="main-sparkline12-hd">
-                    <h1>Add Country</h1>
+                    <h1>Update Country</h1>
                   </div>
                 </div>
                 <div class="sparkline12-graph">
@@ -128,44 +109,53 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="all-form-element-inner">
                           <form action="#" method="post" enctype="multipart/form-data">
-                            <div class="form-group-inner">
-                              <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label class="login2 pull-right pull-right-pro">Country Name</label>
+                            <?php
+                            $eid = $_GET['editid'];
+                            $sql = "SELECT * from  tblcountries where country_name='$eid'";
+                            $query = $dbh->prepare($sql);
+                            $query->execute();
+                            $results = $query->fetchAll(PDO::FETCH_OBJ);
+                            $cnt = 1;
+                            if ($query->rowCount() > 0) {
+                              foreach ($results as $row) {               ?>
+                                <div class="form-group-inner">
+                                  <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                      <label class="login2 pull-right pull-right-pro">Country Name</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                      <input type="text" name="countryname" id="countryname" value="<?php echo $row->country_name; ?>" required="true" class="form-control" />
+                                    </div>
+                                  </div>
                                 </div>
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                  <input type="text" name="countryname" id="countryname" value="" required="true" class="form-control" />
+                                <div class="form-group-inner">
+                                  <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                      <label class="login2 pull-right pull-right-pro">Image</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                      <img src="images/tours/<?php echo $row->image; ?>" width="100" height="100" value="<?php echo $row->Logo; ?>"><a href="changeimage.php?editid=<?php echo $row->ID; ?>"> &nbsp; Edit Image</a>
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                            
 
-                            <div class="form-group-inner">
-                              <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label class="login2 pull-right pull-right-pro">Country Image</label>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                  <input type="file" name="logo" required="true" id="logo" class="form-control" />
-                                </div>
-                              </div>
-                            </div>
-
-                      
-
-                        <div class="form-group-inner">
-                          <div class="login-btn-inner">
-                            <div class="row">
-                              <div class="col-lg-3"></div>
-                              <div class="col-lg-9">
-                                <div class="login-horizental cancel-wp pull-left">
-                                  <button class="btn btn-sm btn-primary login-submit-cs" type="submit" name="submit" id="submit">Add</button>
-                                </div>
-                              </div>
+                        </div>
+                    <?php $cnt = $cnt + 1;
+                              }
+                            } ?>
+                    <div class="form-group-inner">
+                      <div class="login-btn-inner">
+                        <div class="row">
+                          <div class="col-lg-3"></div>
+                          <div class="col-lg-9">
+                            <div class="login-horizental cancel-wp pull-left">
+                              <button class="btn btn-sm btn-primary login-submit-cs" type="submit" name="submit" id="submit">Update</button>
                             </div>
                           </div>
                         </div>
-                        </form>
+                      </div>
+                    </div>
+                    </form>
                       </div>
                     </div>
                   </div>

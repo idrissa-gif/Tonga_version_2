@@ -36,7 +36,7 @@
         <!-- <h5 class="card-title">You visit: <text class="no-bold"><?php echo $row['rate'] ?></text></h5> -->
         <!-- <h5 class="card-title">Reviews: <text class="no-bold"><?php echo $row['rate'] ?></text></h5> -->
 
-        <a href="./tours/tour-page.php" class="btn btn-primary">Explore</a>
+        <a href="./explore.php?tourid=<?php echo $row['TourTitle']?>" class="btn btn-primary">Explore</a>
       </div>
 
       <div class="card-footerg">

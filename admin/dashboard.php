@@ -90,14 +90,14 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                   $query1 = $dbh->prepare($sql1);
                   $query1->execute();
                   $results1 = $query1->fetchAll(PDO::FETCH_OBJ);
-                  $totneworder = $query1->rowCount();
+                  $tottours = $query1->rowCount();
                   ?>
                   <h3 class="box-title">Total Tours</h3>
                   <ul class="list-inline two-part-sp">
                     <li>
                       <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>
                     </li>
-                    <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totneworder); ?>)</span></li>
+                    <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($tottours); ?>)</span></li>
                     <a href="manage-tour.php"><STRONG> View Detail</STRONG></a>
                   </ul>
                 </div>
@@ -147,14 +147,14 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                   $query4 = $dbh->prepare($sql4);
                   $query4->execute();
                   $results4 = $query4->fetchAll(PDO::FETCH_OBJ);
-                  $totproduct = $query4->rowCount();
+                  $totcountries = $query4->rowCount();
                   ?>
                   <h3 class="box-title">Total Books</h3>
                   <ul class="list-inline two-part-sp">
                     <li>
                       <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>
                     </li>
-                    <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totproduct); ?>)</span></li>
+                    <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totcountries); ?>)</span></li>
                     <a href="manage-books.php"><STRONG> View Detail</STRONG></a>
                   </ul>
                 </div>
@@ -183,18 +183,18 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
                 <div class="white-box analytics-info-cs">
                   <?php
-                  $sql4 = "SELECT * from  tbltours";
+                  $sql4 = "SELECT * from  tblcountries";
                   $query4 = $dbh->prepare($sql4);
                   $query4->execute();
                   $results4 = $query4->fetchAll(PDO::FETCH_OBJ);
-                  $totproduct = $query4->rowCount();
+                  $totcountries = $query4->rowCount();
                   ?>
                   <h3 class="box-title">Total Countries</h3>
                   <ul class="list-inline two-part-sp">
                     <li>
                       <div><i class="fa fa-globe" aria-hidden="true" style="color: red"></i></div>
                     </li>
-                    <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totproduct); ?>)</span></li>
+                    <li class="text-right sp-cn-r"> <span class="counter text-success" style="color: blue">(<?php echo htmlentities($totcountries); ?>)</span></li>
                     <a href="manage-country.php"><STRONG> View Detail</STRONG></a>
                   </ul>
                 </div>
