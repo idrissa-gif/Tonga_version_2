@@ -19,7 +19,7 @@ $row = mysqli_fetch_array($result);
 
 $tour_name = $row['TourTitle'];
 $touroperator = $row['OperatorName'];
-$query1 = "SELECT reviewer_name, message , target, created_date from tblreview WHERE target='$touroperator' OR target='$tour_name'";
+$query1 = "SELECT reviewer_name, message , target, created_date, rate from tblreview WHERE target='$touroperator' OR target='$tour_name'";
 $result1 = mysqli_query($con, $query1);
 $row1 = mysqli_fetch_array($result1);
 ?>
@@ -329,7 +329,7 @@ $row1 = mysqli_fetch_array($result1);
                                                 <p><?php echo $row1['message'] ?></p>
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="user-about"> <span class="font-weight-bold d-block"><?php echo $row1['reviewer_name']; ?></span> <span class="u-color"><?php echo $row1['created_date']?></span>
-                                                        <div class="d-flex flex-row mt-1"> <i class="fa fa-star u-color"></i> <i class="fa fa-star u-color"></i> <i class="fa fa-star u-color"></i> <i class="fa fa-star-o u-color"></i> <i class="fa fa-star-o u-color"></i> </div>
+                                                        <div class="d-flex flex-row mt-1"> <i class="fa fa-star-o u-color"></i> <i class="fa fa-star-o u-color"></i> </div>
                                                     </div>
                                                     <div class="user-image"> <img src="images/usericon.png" class="rounded-circle" width="70"> </div>
                                                 </div>
@@ -343,13 +343,13 @@ $row1 = mysqli_fetch_array($result1);
 
 
                         </div>
-                        <?php include("review.php")?>
+                        
                     </div>
                 </div>
             </div>
+            <?php include("review.php")?>
         </div>
-
-
+        
     </div>
     <h5>Disclaimer</h5>
     <ul>

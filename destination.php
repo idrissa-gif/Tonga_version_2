@@ -50,8 +50,7 @@
     <div class="row">
         <?php
 
-        $query = "SELECT C.image 
-            FROM `tbltours` T, `tblcoutries` C where T.Country=C.country_name";
+        $query = "SELECT * FROM `tblcountries`";
 
         $result = mysqli_query($con, $query);
         while ($row = mysqli_fetch_array($result)) {
@@ -62,7 +61,7 @@
                     <img class="card-img-body" src="./image/tours/<?php echo $row['image'] ?>" 
                     style="width:auto; height:50vh">
                     <div class="card-img-overlay">
-                        <h5 class="card-title"><?php echo $row['Country'] ?></text></h5>
+                        <h5 class="card-title"><?php echo $row['country_name'] ?></text></h5>
                         <a href="#!" class="btn btn-outline-light" 
                         style="position:absolute; margin-top: 80%; margin-left:65%; ">Explore</a>
 
