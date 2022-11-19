@@ -1,18 +1,27 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/explore.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/explore.css">
 </head>
 <?php
-include("../connection.php");
-include("../headerAndFooter/header.php"); ?>
+include("connection.php");
+include("headerAndFooter/header.php"); ?>
 
 <?php
-// $id = $_GET['editid'];
+$id = $_GET['tourid'];
 
-$query = "SELECT T.TourTitle , T.Price, T.Country , T.description , T.rate , T.Image , O.logo,  T.OperatorName 
-           FROM `tbltours` T ,`tbloperator` O where T.OperatorName=O.OperatorName ";
+$query = "SELECT T.TourTitle , T.Price, T.Country , T.description , T.rate , T.Image , O.logo, O.size, O.tour_type,O.destinations,T.OperatorName
+           FROM `tbltours` T ,`tbloperator` O where T.OperatorName=O.OperatorName and T.TourTitle= '$id'";
 $result = mysqli_query($con, $query);
 $row = mysqli_fetch_array($result);
+
+$tour_name = $row['TourTitle'];
+$touroperator = $row['OperatorName'];
+$query1 = "SELECT reviewer_name, message , target, created_date, rate from tblreview WHERE target='$touroperator' OR target='$tour_name'";
+$result1 = mysqli_query($con, $query1);
+$row1 = mysqli_fetch_array($result1);
 ?>
 
 <div class="box">
@@ -50,8 +59,8 @@ $row = mysqli_fetch_array($result);
                             <li>
                                 <div class="content" style="text-align: left; overflow:auto; ">
                                     <div style="float:left;"> <img src="https://cfstatic.safaribookings.com/img/svg/icons-red/icon-accomodation-mid.svg"></div>
-                                    <p><b>Mid-range tour</b></p>
-                                    <p style="margin-left:48px; margin-top: -15px; ">
+                                    <p style="margin-left:70px;"><b>Mid-range tour</b></p>
+                                    <p style="margin-left:70px; margin-top: -15px; ">
                                         This mid-range tour uses lodges and tented camps.
                                     </p>
                                 </div>
@@ -61,8 +70,8 @@ $row = mysqli_fetch_array($result);
                             <li>
                                 <div class="content" style="text-align: left; overflow:auto; ">
                                     <div style="float:left;"> <img style="display:block;" src="https://cfstatic.safaribookings.com/img/svg/icons-red/icon-private-tour.svg"></div>
-                                    <p><b>Private tour</b></p>
-                                    <p style="margin-left:48px; margin-top: -15px; ">
+                                    <p style="margin-left:70px;"><b>Private tour</b></p>
+                                    <p style="margin-left:70px; margin-top: -15px; ">
                                         This tour will be organized exclusively for you and won't be shared with others.
                                     </p>
                                 </div>
@@ -71,8 +80,8 @@ $row = mysqli_fetch_array($result);
                             <li>
                                 <div class="content" style="text-align: left; overflow:auto; ">
                                     <div style="float:left;"> <img src="https://cfstatic.safaribookings.com/img/svg/icons-red/icon-departure-any-day.svg"></div>
-                                    <p><b>Can start any day</b></p>
-                                    <p style="margin-left:48px; margin-top: -15px; ">
+                                    <p style="margin-left:70px;"><b>Can start any day</b></p>
+                                    <p style="margin-left:70px; margin-top: -15px; ">
                                         If availability permits, this tour can start on any day.
                                     </p>
                                 </div>
@@ -82,8 +91,8 @@ $row = mysqli_fetch_array($result);
                             <li>
                                 <div class="content" style="text-align: left; overflow:auto; ">
                                     <div style="float:left;"> <img style="display:block;" src="https://cfstatic.safaribookings.com/img/svg/icons-red/icon-customize-yes.svg"></div>
-                                    <p><b>Can be customized</b></p>
-                                    <p style="margin-left:48px; margin-top: -15px; ">
+                                    <p style="margin-left:70px;"><b>Can be customized</b></p>
+                                    <p style="margin-left:70px; margin-top: -15px; ">
                                         You can request minor changes to the accommodations and destinations of this tour.
                                     </p>
                                 </div>
@@ -92,8 +101,8 @@ $row = mysqli_fetch_array($result);
                             <li>
                                 <div class="content" style="text-align: left; overflow:auto; ">
                                     <div style="float:left;"> <img src="https://cfstatic.safaribookings.com/img/svg/icons-red/icon-solo-travelers-no.svg"></div>
-                                    <p><b>Not for solo travelers</b></p>
-                                    <p style="margin-left:48px; margin-top: -15px; ">
+                                    <p style="margin-left:70px;"><b>Not for solo travelers</b></p>
+                                    <p style="margin-left:70px; margin-top: -15px; ">
                                         Solo travelers cannot book this private tour.
 
 
@@ -105,8 +114,8 @@ $row = mysqli_fetch_array($result);
                             <li>
                                 <div class="content" style="text-align: left; overflow:auto; ">
                                     <div style="float:left;"> <img style="display:block;" src="https://cfstatic.safaribookings.com/img/svg/icons-red/icon-age-all.svg"></div>
-                                    <p><b>Suitable for all ages</b></p>
-                                    <p style="margin-left:48px; margin-top: -15px; ">
+                                    <p style="margin-left:70px;"><b>Suitable for all ages</b></p>
+                                    <p style="margin-left:70px; margin-top: -15px; ">
                                         This tour is suitable for children of all ages.
 
                                     </p>
@@ -126,7 +135,7 @@ $row = mysqli_fetch_array($result);
                                         <br>
                                         <br>
                                     </div>
-                                    <p>Activities: <b>game drives</b></p>
+                                    <p style="margin-left:70px;">Activities: <b>game drives</b></p>
 
                                 </div>
 
@@ -139,7 +148,7 @@ $row = mysqli_fetch_array($result);
                                         <br>
                                         <br>
                                     </div>
-                                    <p>Game drives: pop-up roof 4x4 vehicle</p>
+                                    <p style="margin-left:70px;">Game drives: pop-up roof 4x4 vehicle</p>
 
                                 </div>
                             </li>
@@ -151,7 +160,7 @@ $row = mysqli_fetch_array($result);
                                         <br>
                                         <br>
                                     </div>
-                                    <p>Getting around: pop-up roof 4x4 vehicle
+                                    <p style="margin-left:70px;">Getting around: pop-up roof 4x4 vehicle
                                     </p>
 
                                 </div>
@@ -163,7 +172,7 @@ $row = mysqli_fetch_array($result);
                                         <img src="https://cfstatic.safaribookings.com/img/svg/icons-red/icon-airport-transfer.svg">
 
                                     </div>
-                                    <p>A transfer from and back to the airport is included
+                                    <p style="margin-left:70px;">A transfer from and back to the airport is included
                                     </p>
 
                                 </div>
@@ -177,8 +186,6 @@ $row = mysqli_fetch_array($result);
                     </div>
 
                     <div class="tab-pane fade" id="profile">
-
-
                     </div>
 
                     <div class="tab-pane fade" id="inclusions">
@@ -283,7 +290,7 @@ $row = mysqli_fetch_array($result);
                             <div class="card">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img class="Page-img" src="./image/tours/<?php echo $row['Image']; ?>" alt="">
+                                        <img class="Page-img" src="./image/tours/<?php echo $row['logo']; ?>" alt="">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -292,9 +299,9 @@ $row = mysqli_fetch_array($result);
                                             </div>
                                             <p class="card-text">
                                             <p style="text-align: left;">Offices In: <?php echo $row['Country'] ?></h5>
-                                            <p style="text-align: left;">Size: <?php echo $row['Country'] ?></h5>
-                                            <p style="text-align: left;">Tour Types: <?php echo $row['Country'] ?></h5>
-                                            <p style="text-align: left;">Destinations: <?php echo $row['Country'] ?></h5>
+                                            <p style="text-align: left;">Size: <?php echo $row['size'] ?></h5>
+                                            <p style="text-align: left;">Tour Types: <?php echo $row['tour_type'] ?></h5>
+                                            <p style="text-align: left;">Destinations: <?php echo $row['destinations'] ?></h5>
                                             </p>
 
 
@@ -310,64 +317,54 @@ $row = mysqli_fetch_array($result);
 
 
                                 <h5 class="card-title" style="text-align: left; font-weight:bold">
-                                    <hr>    Reviews <?php echo $row['Country'] ?>
+                                    <hr> Reviews
                                     <hr>
                                 </h5>
+                                <div class="col-md-14">
+                                    <div class="card-body">
 
 
-                                <div class="row">
-
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <div class="card-title">
-                                                <div class="content" style="text-align: left; overflow:auto; ">
-                                                    <div style="float:left;"> <img style=" width:30px; height:30px; margin-right:20px" src="../images/usericon.png"></div>
-                                                    <p><?php echo $row['OperatorName'] ?></p>
-
+                                        <div class="col-md-4">
+                                            <div class="card"> <i class="fa fa-quote-left u-color"></i>
+                                                <p><?php echo $row1['message'] ?></p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="user-about"> <span class="font-weight-bold d-block"><?php echo $row1['reviewer_name']; ?></span> <span class="u-color"><?php echo $row1['created_date']?></span>
+                                                        <div class="d-flex flex-row mt-1"> <i class="fa fa-star-o u-color"></i> <i class="fa fa-star-o u-color"></i> </div>
+                                                    </div>
+                                                    <div class="user-image"> <img src="images/usericon.png" class="rounded-circle" width="70"> </div>
                                                 </div>
-                                                <p class="card-text">
-                                                <p style="text-align: left;">Offices In: <?php echo $row['Country'] ?></h5>
-                                                <p style="text-align: left;">Size: <?php echo $row['Country'] ?></h5>
-                                                <p style="text-align: left;">Tour Types: <?php echo $row['Country'] ?></h5>
-                                                <p style="text-align: left;">Destinations: <?php echo $row['description'] ?></h5>
-                                                </p>
-
-
                                             </div>
-
                                         </div>
-
 
                                     </div>
 
-
-
-
                                 </div>
                             </div>
+
+
                         </div>
-
+                        
                     </div>
-
                 </div>
             </div>
+            <?php include("review.php")?>
         </div>
+        
     </div>
-
-
-</div>
-<h5>Disclaimer</h5>
-<ul>
-    <li>This tour is offered by Safari Soles, not SafariBookings.
-    </li>
-    <li>This operator reserves the right to change rates advertised on SafariBookings.
-    </li>
-    <li>If you request changes to this tour, the advertised rates will likely change.
-    </li>
-    <li>The exact order, contents and rates of this tour is subject to availability.
-    </li>
-    <li>If an accommodation is fully booked, the operator will suggest a comparable alternative.
-    </li>
-</ul>
-<!-- Tabs content -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <h5>Disclaimer</h5>
+    <ul>
+        <li>This tour is offered by Safari Soles, not SafariBookings.
+        </li>
+        <li>This operator reserves the right to change rates advertised on SafariBookings.
+        </li>
+        <li>If you request changes to this tour, the advertised rates will likely change.
+        </li>
+        <li>The exact order, contents and rates of this tour is subject to availability.
+        </li>
+        <li>If an accommodation is fully booked, the operator will suggest a comparable alternative.
+        </li>
+    </ul>
+    <!-- Tabs content -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

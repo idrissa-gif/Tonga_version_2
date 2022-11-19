@@ -22,7 +22,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
     $availability = $_POST['availability'];
     $description = $_POST['description'];
     $Image = $_POST['Image'];
-    
+
     //Tour Image
     $pic = $_FILES["image"]["name"];
     $extension = substr($pic, strlen($pic) - 4, strlen($pic));
@@ -49,18 +49,15 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
     // Validation for allowed extensions .in_array() function searches an array for a specific value.
     else if (!in_array($extension, $allowed_extensions)) {
       echo "<script>alert('Tour image has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
-    }
-    else if (!in_array($extension1, $allowed_extensions)) {
+    } else if (!in_array($extension1, $allowed_extensions)) {
       echo "<script>alert('Tour image1 has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
-    }
-    else if (!in_array($extension2, $allowed_extensions)) {
+    } else if (!in_array($extension2, $allowed_extensions)) {
       echo "<script>alert('Tour image2 has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
-    }
-    else if (!in_array($extension3, $allowed_extensions)) {
+    } else if (!in_array($extension3, $allowed_extensions)) {
       echo "<script>alert('Tour image3 has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
     } else {
 
-     
+
       //rename tour images
       // $propic = md5($pic) . time() . $extension;
       // $propic1 = md5($pic1) . time() . $extension1;
@@ -165,7 +162,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
     <?php include_once('includes/sidebar.php'); ?>
     <!-- Start Welcome area -->
-    <div class="all-content-wrapper" >
+    <div class="all-content-wrapper">
       <?php include_once('includes/header.php'); ?>
 
       <!-- Basic Form Start -->
@@ -248,9 +245,23 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                     <span class="input-group-addon"><i class="fa fa-qrcode" aria-hidden="true"></i></span>
                                     <input type="file" name="image3" value="" class="form-control" id="image3" required="true">
                                   </div>
+                                  
                                   <div class="input-group mg-b-pro-edt">
-                                    <span class="input-group-addon"><i class="fas fa-globe-africa"></i></span>
-                                    <input type="text" class="form-control" placeholder="Country" name="Country" id="Country" required="true">
+                                    <span class="input-group-addon"><i class="fa fa-sticky-note-o" aria-hidden="true"></i></span>
+                                    <select name="Country" id="Country" required="true" class="form-control pro-edt-select form-control-primary">
+                                      <option value="opt1">Select Country</option>
+                                      <?php
+
+                                      $sql5 = "SELECT * from tblcountries";
+                                      $query5 = $dbh->prepare($sql5);
+                                      $query5->execute();
+                                      $result5 = $query5->fetchAll(PDO::FETCH_OBJ);
+
+                                      foreach ($result5 as $row2) {
+                                      ?>
+                                        <option value="<?php echo htmlentities($row2->country_name); ?>"><?php echo htmlentities($row2->country_name); ?></option>
+                                      <?php } ?>
+                                    </select>
                                   </div>
                                   <div class="input-group mg-b-pro-edt">
                                     <span class="input-group-addon"><i class="fas fa-globe-africa"></i></span>

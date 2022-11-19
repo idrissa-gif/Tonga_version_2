@@ -5,14 +5,21 @@ include('includes/dbconnection.php');
 if (strlen($_SESSION['ofsmsaid'] == 0)) {
     header('location:logout.php');
 } else {
-
+    if (isset($_GET['delid'])) {
+        $name = $_GET['delid'];
+        $count = $dbh->prepare("DELETE FROM tblcountries WHERE country_name=:id");
+        $count->bindParam(":id", $name, PDO::PARAM_STR);
+        $count->execute();
+        echo "<script>alert('Country deleted');</script>";
+        echo "<script>window.location.href ='manage-countries.php'</script>";
+    }
 ?>
     <!doctype html>
     <html class="no-js" lang="en">
 
     <head>
 
-        <title>Tonga Agency System | Registered Users</title>
+        <title>Tonga Management System | Manage Countries</title>
 
         <!-- Google Fonts
     ============================================ -->
@@ -90,7 +97,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                             <div class="sparkline13-list">
                                 <div class="sparkline13-hd">
                                     <div class="main-sparkline13-hd">
-                                        <h1>Registered <span class="table-project-n">Users</span></h1>
+                                        <h1>Manage <span class="table-project-n">Country</span></h1>
                                     </div>
                                 </div>
                                 <div class="sparkline13-graph">
@@ -106,17 +113,18 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                             <thead>
                                                 <tr>
                                                     <th data-field="state" data-checkbox="true"></th>
-                                                    <th>S.NO</th>
-                                                    <th>Name</th>
-                                                    <th>Mobile Number</th>
-                                                    <th>Email</th>
-                                                    <th data-field="company">Reg Date</th>
-
+                                                    <th data-field="id">S.NO</th>
+                                                    <th data-field="name">Country Name</th>
+                                                    <th data-field="tours"># Tours</th>
+                                                    <th data-field="size"># Operator</th>
+                                                    <th data-field="image">Image</th>
+                                                    <th data-field="creation-date">Creation Date</th>
+                                                    <th>Setting</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT * from tbluser";
+                                                $sql = "SELECT * from tblcountries";
                                                 $query = $dbh->prepare($sql);
                                                 $query->execute();
                                                 $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -128,10 +136,12 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                                                         <tr>
                                                             <td></td>
                                                             <td><?php echo htmlentities($cnt); ?></td>
-                                                            <td><?php echo htmlentities($row->FullName); ?></td>
-                                                            <td><?php echo htmlentities($row->MobileNumber); ?></td>
-                                                            <td><?php echo htmlentities($row->Email); ?></td>
-                                                            <td><?php echo htmlentities($row->RegDate); ?></td>
+                                                            <td><?php echo htmlentities($row->country_name); ?></td>
+                                                            <td><?php echo htmlentities($row->tours); ?></td>
+                                                            <td><?php echo htmlentities($row->operators); ?></td>
+                                                            <td><img src="images/tours/<?php echo $row->image; ?>" width="200px" height="300px" value="<?php echo $row->Image; ?>"></td>
+                                                            <td><?php echo htmlentities($row->created_date); ?></td>
+                                                            <td><a href="edit-countries-detail.php?editid=<?php echo htmlentities($row->country_name); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a><a href="manage-countries.php?delid=<?php echo htmlentities($row->country_name); ?>" onclick="return confirm('Do you really want to Delete ?');"> <i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                                                         </tr>
                                                 <?php $cnt = $cnt + 1;
                                                     }

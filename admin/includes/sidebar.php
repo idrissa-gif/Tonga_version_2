@@ -39,7 +39,14 @@
                     <li id="removable">
                         <a class="" href="reviews.php" aria-expanded="false"><i class="fa big-icon fa-comments icon-wrap" aria-hidden="true"></i> <span class="mini-click-non">Reviews</span></a>
                     </li>
-                    <li><a title="Dashboard" href="reg-users.php" aria-expanded="false"><i class="fa fa-users icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Reg Users</span></a></li>
+                    <li id="removable">
+                        <a class="has-arrow" href="#" aria-expanded="false"><i class="fa big-icon fa-flag"></i> <span class="mini-click-non">Countries</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Add" href="add-countries.php"><i class="fa fa-hand-rock-o sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Add</span></a></li>
+                            <li><a title="Manage" href="manage-countries.php"><i class="fa fa-plane sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Manage</span></a></li>
+
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </div>

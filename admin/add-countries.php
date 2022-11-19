@@ -8,7 +8,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
   if (isset($_POST['submit'])) {
 
     $ofsmsaid = $_SESSION['ofsmsaid'];
-    $opname = $_POST['operatorname'];
+    $countryname = $_POST['countryname'];
     $office = $_POST['operatoroffice'];
     $size = $_POST['operatorsize'];
     $destination = $_POST['destinations'];
@@ -22,22 +22,18 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
     } else {
       //$logo = md5($logo) . time() . $extension;
       //move_uploaded_file($_FILES["logo"]["tmp_name"], "images/" . $logo);
-      $sql = "insert into tbloperator(OperatorName,Logo,OperatorOffice,size,tour_type,destinations) values(:opname,:logo,:operatoroffice,:size,:tour_type,:destination)";
+      $sql = "insert into  tblcountries (country_name,image) values(:countryname,:logo)";
 
       $query = $dbh->prepare($sql);
-      $query->bindParam(':opname', $opname, PDO::PARAM_STR);
+      $query->bindParam(':countryname', $countryname, PDO::PARAM_STR);
       $query->bindParam(':logo', $logo, PDO::PARAM_STR);
-      $query->bindParam(':operatoroffice', $office, PDO::PARAM_STR);
-      $query->bindParam(':size', $size, PDO::PARAM_STR);
-      $query->bindParam(':tour_type', $tourType, PDO::PARAM_STR);
-      $query->bindParam(':destination', $destination, PDO::PARAM_STR);
 
       $query->execute();
 
       $LastInsertId = $dbh->lastInsertId();
-      if ($LastInsertId > 0) {
-        echo '<script>alert("Operator has been added.")</script>';
-        echo "<script>window.location.href ='add-operator.php'</script>";
+      if ($LastInsertId >= 0) {
+        echo '<script>alert("Country has been added.")</script>';
+        echo "<script>window.location.href ='add-countries.php'</script>";
       } else {
         echo '<script>alert("Something Went Wrong. Please try again")</script>';
       }
@@ -49,7 +45,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
   <head>
 
-    <title>ADD Operator | Tonga Management System</title>
+    <title>ADD Country | Tonga Management System</title>
 
     <!-- Google Fonts
 		============================================ -->
@@ -123,7 +119,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
               <div class="sparkline12-list">
                 <div class="sparkline12-hd">
                   <div class="main-sparkline12-hd">
-                    <h1>Add Operators</h1>
+                    <h1>Add Country</h1>
                   </div>
                 </div>
                 <div class="sparkline12-graph">
@@ -135,75 +131,19 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                             <div class="form-group-inner">
                               <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label class="login2 pull-right pull-right-pro">Operator Name</label>
+                                  <label class="login2 pull-right pull-right-pro">Country Name</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                  <input type="text" name="operatorname" id="operatorname" value="" required="true" class="form-control" />
+                                  <input type="text" name="countryname" id="countryname" value="" required="true" class="form-control" />
                                 </div>
-                              </div>
-                            </div>
-                            <div class="form-group-inner">
-                              <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label class="login2 pull-right pull-right-pro">Operator Office</label>
-                                </div>
-                                <div class="input-group mg-b-pro-edt">
-                              <span class="input-group-addon"><i class="fa fa-flag-o" aria-hidden="true"></i></span>
-                              <select name="operatoroffice" id="operatoroffice" required="true" class="form-control pro-edt-select form-control-primary">
-                                <option value="opt1">Select Country</option>
-                                <?php
-
-                                $sql5 = "SELECT * from tblcountries";
-                                $query5 = $dbh->prepare($sql5);
-                                $query5->execute();
-                                $result5 = $query5->fetchAll(PDO::FETCH_OBJ);
-
-                                foreach ($result5 as $row2) {
-                                ?>
-                                  <option value="<?php echo htmlentities($row2->country_name); ?>"><?php echo htmlentities($row2->country_name); ?></option>
-                                <?php } ?>
-                              </select>
-                            </div>
                               </div>
                             </div>
                             
-                            <div class="form-group-inner">
-                              <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label class="login2 pull-right pull-right-pro">Operator Size</label>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                  <input type="text" name="operatorsize" id="operatorsize" value="" required="true" class="form-control" />
-                                </div>
-                              </div>
-                            </div>
 
                             <div class="form-group-inner">
                               <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label class="login2 pull-right pull-right-pro">Tour Types</label>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                  <input type="text" name="tourtype" id="tourtype" value="" required="true" class="form-control" />
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="form-group-inner">
-                              <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label class="login2 pull-right pull-right-pro">Destinations</label>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                  <input type="text" name="destinations" id="destinations" value="" required="true" class="form-control" />
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="form-group-inner">
-                              <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label class="login2 pull-right pull-right-pro">Operator Logo</label>
+                                  <label class="login2 pull-right pull-right-pro">Country Image</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                   <input type="file" name="logo" required="true" id="logo" class="form-control" />
@@ -211,7 +151,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                               </div>
                             </div>
 
-                        </div>
+                      
 
                         <div class="form-group-inner">
                           <div class="login-btn-inner">
