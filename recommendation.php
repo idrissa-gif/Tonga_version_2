@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
     $Rate = '0';
     $description = $_POST['description'];
     $Image = $_POST['Image'];
-    
+
 
     //Tour Image
     $pic = $_FILES["image"]["name"];
@@ -35,9 +35,9 @@ if (isset($_POST['submit'])) {
     $extension3 = substr($pic3, strlen($pic3) - 4, strlen($pic3));
     // allowed extensions
     $allowed_extensions = array(".jpg", "jpeg", ".png", ".gif");
-    
+
     // Validation for allowed extensions .in_array() function searches an array for a specific value.
-   if (!in_array($extension, $allowed_extensions)) {
+    if (!in_array($extension, $allowed_extensions)) {
         echo "<script>alert('Tour image has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
     } else if (!in_array($extension1, $allowed_extensions)) {
         echo "<script>alert('Tour image1 has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
     } else {
 
 
-        
+
         //rename tour images
         // $propic = md5($pic) . time() . $extension;
         // $propic1 = md5($pic1) . time() . $extension1;
@@ -58,14 +58,14 @@ if (isset($_POST['submit'])) {
         // move_uploaded_file($_FILES["image1"]["tmp_name"], "images/" . $propic1);
         // move_uploaded_file($_FILES["image2"]["tmp_name"], "images/" . $propic2);
         // move_uploaded_file($_FILES["image3"]["tmp_name"], "images/" . $propic3);
-        
+
 
         $sql = "insert into tbltoursuggestion(TourTitle,Price,OperatorName,Country,Rate,Image,Image1,Image2,Image3,description) values(:tourtitle,:tourprice,:operatorname,:Country,:Rate,:img,:img1,:img2,:img3,:description)";
-   
+
         $query = $dbh->prepare($sql);
         echo '<script>alert("Tour detail has all .")</script>';
         $query->bindParam(':tourtitle', $tourptitle, PDO::PARAM_STR);
-        
+
         $query->bindParam(':tourprice', $price, PDO::PARAM_STR);
         $query->bindParam(':operatorname', $operatorname, PDO::PARAM_STR);
         $query->bindParam(':Country', $Country, PDO::PARAM_STR);
@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
         $query->bindParam(':img2', $pic2, PDO::PARAM_STR);
         $query->bindParam(':img3', $pic3, PDO::PARAM_STR);
         $query->execute();
-        
+
 
         $LastInsertId = $dbh->lastInsertId();
         if ($LastInsertId > 0) {

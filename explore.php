@@ -25,7 +25,7 @@ $row1 = mysqli_fetch_array($result1);
 ?>
 
 <div class="d-grid gap-2 col-6 mx-auto">
-  <button class="btn btn-primary" type="button" href>BOOK<a href="./book.php"> .  </a></button>
+    <button class="btn btn-primary" type="button" href>BOOK<a href="./book.php"> . </a></button>
 </div>
 <div class="box">
 
@@ -331,8 +331,8 @@ $row1 = mysqli_fetch_array($result1);
                                             <div class="card"> <i class="fa fa-quote-left u-color"></i>
                                                 <p><?php echo $row1['message'] ?></p>
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="user-about"> <span class="font-weight-bold d-block"><?php echo $row1['reviewer_name']; ?></span> <span class="u-color"><?php echo $row1['created_date']?></span>
-                                                        <div class="d-flex flex-row mt-1"> <?php for ($i=0 ; $i<$row1['rate'];$i++) echo "<i class='fa fa-star-o u-color'></i>";?></div>
+                                                    <div class="user-about"> <span class="font-weight-bold d-block"><?php echo $row1['reviewer_name']; ?></span> <span class="u-color"><?php echo $row1['created_date'] ?></span>
+                                                        <div class="d-flex flex-row mt-1"> <?php for ($i = 0; $i < $row1['rate']; $i++) echo "<i class='fa fa-star-o u-color'></i>"; ?></div>
                                                     </div>
                                                     <div class="user-image"> <img src="images/usericon.png" class="rounded-circle" width="70"> </div>
                                                 </div>
@@ -346,13 +346,13 @@ $row1 = mysqli_fetch_array($result1);
 
 
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
-            <?php include("review.php")?>
+            <?php include("review.php") ?>
         </div>
-        
+
     </div>
     <h5>Disclaimer</h5>
     <ul>

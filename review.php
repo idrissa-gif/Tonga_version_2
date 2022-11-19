@@ -1,5 +1,35 @@
+<?php
 
+include('admin/includes/dbconnection.php');
 
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $rate= $_POST['rating'];
+    $comment = $_POST['comment'];
+    $target =$id;
+
+    $sql = "insert into tblreview(reviewer_name,message,rate,target) values(:reviewer_name,:message,:rate,:target)";
+
+    $query = $dbh->prepare($sql);
+    echo '<script>alert("Tour detail has all .")</script>';
+    $query->bindParam(':tourtitle', $tourptitle, PDO::PARAM_STR);
+    
+    $query->bindParam(':reviewer_name', $name, PDO::PARAM_STR);
+    $query->bindParam(':message', $comment, PDO::PARAM_STR);
+    $query->bindParam(':rate', $rate, PDO::PARAM_STR);
+    $query->bindParam(':target', $target, PDO::PARAM_STR);
+    $query->execute();
+    
+    $LastInsertId = $dbh->lastInsertId();
+    if ($LastInsertId > 0) {
+        echo '<script>alert("Tour detail has been added.")</script>';
+        echo "<script>window.location.href ='recommendation.php'</script>";
+    } else {
+        echo '<script>alert("Something Went Wrong. Please try again")</script>';
+    }
+}
+?>
 <div id="feedback-form-wrapper">
     <div id="floating-icon">
         <button type="button" class="btn btn-primary btn-sm rounded-0" data-toggle="modal" data-target="#exampleModal">
@@ -34,14 +64,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="input-one" placeholder="name">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="name">
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" id="input-one" placeholder="email" required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="email" required>
                             </div>
                             <div class="form-group">
                                 <label for="input-two">Would you like to share your experience?</label>
-                                <textarea class="form-control" id="input-two" rows="3"></textarea>
+                                <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
