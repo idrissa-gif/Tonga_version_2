@@ -24,6 +24,9 @@ $result1 = mysqli_query($con, $query1);
 $row1 = mysqli_fetch_array($result1);
 ?>
 
+<div class="d-grid gap-2 col-6 mx-auto">
+  <button class="btn btn-primary" type="button" href>BOOK<a href="./book.php"> .  </a></button>
+</div>
 <div class="box">
 
     <div class="m-4">

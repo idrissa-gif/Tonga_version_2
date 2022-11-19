@@ -2,7 +2,7 @@
 include("connection.php");
 include("function.php");
 
-if (array_key_exists('submit', $_POST)) {
+if (isset($_POST['book'])) {
     $FullName = $_POST['FullName'];
     $email = $_POST["email"];
     $Phone = $_POST["Phone"];
@@ -18,10 +18,10 @@ if (array_key_exists('submit', $_POST)) {
     }
 
     echo "<script> alert('You have got a Free Quote')
-        window.location.replace('SouthAfricaTours.html'); </script>";
+        window.location.replace('book.php'); </script>";
 } else {
     echo "<script> alert('Failed to get a Free Quote')
-        window.location.replace('SouthAfricaTours.html'); </script>";
+        window.location.replace('book.php'); </script>";
 }
 
 ?>
@@ -163,7 +163,7 @@ if (array_key_exists('submit', $_POST)) {
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4" name="submit" style="background-color: green;">Book Trip</button>
+            <button type="book" class="btn btn-primary btn-block mb-4" name="book" style="background-color: green;">Book Trip</button>
 
             <!-- Register buttons -->
             <div class="text-center">

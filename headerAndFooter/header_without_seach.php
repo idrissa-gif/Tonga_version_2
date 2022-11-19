@@ -61,9 +61,7 @@
                         <a class="nav-link active" aria-current="page" href="">Contact us</a>
                     </li>
                 </ul>
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                </form>
+                
                 <!-- <ul class="nav">
                     <li class="nav-item"><a href="./login.html" class="nav-link link-dark px-2" style="background-color: #2A5BD9; border-radius: 10px ; margin-right: 10px;">Login</a></li>
                     <li class="nav-item"><a href="./register.html" class="nav-link link-dark px-2" style="background-color: #25E850; border-radius: 10px ; margin-right: 10px;">Sign up</a></li>
