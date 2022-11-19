@@ -329,7 +329,7 @@ $row1 = mysqli_fetch_array($result1);
                                                 <p><?php echo $row1['message'] ?></p>
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="user-about"> <span class="font-weight-bold d-block"><?php echo $row1['reviewer_name']; ?></span> <span class="u-color"><?php echo $row1['created_date']?></span>
-                                                        <div class="d-flex flex-row mt-1"> <i class="fa fa-star-o u-color"></i> <i class="fa fa-star-o u-color"></i> </div>
+                                                        <div class="d-flex flex-row mt-1"> <?php for ($i=0 ; $i<$row1['rate'];$i++) echo "<i class='fa fa-star-o u-color'></i>";?></div>
                                                     </div>
                                                     <div class="user-image"> <img src="images/usericon.png" class="rounded-circle" width="70"> </div>
                                                 </div>
