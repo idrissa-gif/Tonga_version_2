@@ -1,8 +1,9 @@
 <?php
+session_start();
 include("connection.php");
 include("function.php");
 
-if (isset($_POST['book'])) {
+if (isset($_POST['booktrip'])) {
     $FullName = $_POST['FullName'];
     $email = $_POST["email"];
     $Phone = $_POST["Phone"];
@@ -20,12 +21,11 @@ if (isset($_POST['book'])) {
     echo "<script> alert('You have got a Free Quote')
         window.location.replace('book.php'); </script>";
 } else {
-    echo "<script> alert('Failed to get a Free Quote')
-        window.location.replace('book.php'); </script>";
-}
 
 ?>
-<html lang="en"><head>
+<html lang="en">
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -78,7 +78,24 @@ if (isset($_POST['book'])) {
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<style>INPUT:-webkit-autofill,SELECT:-webkit-autofill,TEXTAREA:-webkit-autofill{animation-name:onautofillstart}INPUT:not(:-webkit-autofill),SELECT:not(:-webkit-autofill),TEXTAREA:not(:-webkit-autofill){animation-name:onautofillcancel}@keyframes onautofillstart{}@keyframes onautofillcancel{}</style></head>
+  <style>
+    INPUT:-webkit-autofill,
+    SELECT:-webkit-autofill,
+    TEXTAREA:-webkit-autofill {
+      animation-name: onautofillstart
+    }
+
+    INPUT:not(:-webkit-autofill),
+    SELECT:not(:-webkit-autofill),
+    TEXTAREA:not(:-webkit-autofill) {
+      animation-name: onautofillcancel
+    }
+
+    @keyframes onautofillstart {}
+
+    @keyframes onautofillcancel {}
+  </style>
+</head>
 
 <body>
   <!-- header section start -->
@@ -91,18 +108,26 @@ if (isset($_POST['book'])) {
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+            <a class="nav-link active" aria-current="page" href="./home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="destinations.html">Destinations</a>
+            <a class="nav-link active" aria-current="page" href="./destination.php">Destinations</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="book.html">Booking</a>
+            <a class="nav-link active" aria-current="page" href="./tour.php">Tours</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="contact_us.html">Contact us</a>
+            <a class="nav-link active" aria-current="page" href="./recommendation.php">Suggest Places</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./contact_us.php">Contact us</a>
           </li>
         </ul>
+
+        <!-- <ul class="nav">
+                    <li class="nav-item"><a href="./login.html" class="nav-link link-dark px-2" style="background-color: #2A5BD9; border-radius: 10px ; margin-right: 10px;">Login</a></li>
+                    <li class="nav-item"><a href="./register.html" class="nav-link link-dark px-2" style="background-color: #25E850; border-radius: 10px ; margin-right: 10px;">Sign up</a></li>
+                </ul> -->
       </div>
     </div>
   </nav>
@@ -119,51 +144,86 @@ if (isset($_POST['book'])) {
             <div class="form-outline mb-4" metho="">
               <input type="text" id="destination" class="form-control" name="destination" style="background-color: white; color:black" required="">
               <label class="form-label" for="destination" style="margin-left: 0px;">Destination</label>
-            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 72px;"></div><div class="form-notch-trailing"></div></div></div>
+              <div class="form-notch">
+                <div class="form-notch-leading" style="width: 9px;"></div>
+                <div class="form-notch-middle" style="width: 72px;"></div>
+                <div class="form-notch-trailing"></div>
+              </div>
+            </div>
 
             <!-- FullName input -->
             <div class="form-outline mb-4" metho="">
               <input type="text" id="loginName" class="form-control" name="FullName" style="background-color: white; color:black" required="">
               <label class="form-label" for="loginName" style="margin-left: 0px;">FullName</label>
-            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 62.4px;"></div><div class="form-notch-trailing"></div></div></div>
+              <div class="form-notch">
+                <div class="form-notch-leading" style="width: 9px;"></div>
+                <div class="form-notch-middle" style="width: 62.4px;"></div>
+                <div class="form-notch-trailing"></div>
+              </div>
+            </div>
 
             <!-- Email input -->
             <div class="form-outline mb-4" metho="">
               <input type="email" id="email" class="form-control" name="email" style="background-color: white; color:black" required="">
               <label class="form-label" for="email" style="margin-left: 0px;">Email</label>
-            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 40px;"></div><div class="form-notch-trailing"></div></div></div>
+              <div class="form-notch">
+                <div class="form-notch-leading" style="width: 9px;"></div>
+                <div class="form-notch-middle" style="width: 40px;"></div>
+                <div class="form-notch-trailing"></div>
+              </div>
+            </div>
 
             <!-- Phone input -->
             <div class="form-outline mb-4" metho="">
               <input type="text" id="Phone" class="form-control" name="Phone" style="background-color: white; color:black" required="">
               <label class="form-label" for="Phone" style="margin-left: 0px;">Phone</label>
-            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 44.8px;"></div><div class="form-notch-trailing"></div></div></div>
+              <div class="form-notch">
+                <div class="form-notch-leading" style="width: 9px;"></div>
+                <div class="form-notch-middle" style="width: 44.8px;"></div>
+                <div class="form-notch-trailing"></div>
+              </div>
+            </div>
 
             <!-- Adults input -->
             <div class="form-outline mb-4" metho="">
               <input type="number" id="adults" class="form-control" name="adults" style="background-color: white; color:black" required="">
               <label class="form-label" for="adults" style="margin-left: 0px;">Adults</label>
-            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 43.2px;"></div><div class="form-notch-trailing"></div></div></div>
+              <div class="form-notch">
+                <div class="form-notch-leading" style="width: 9px;"></div>
+                <div class="form-notch-middle" style="width: 43.2px;"></div>
+                <div class="form-notch-trailing"></div>
+              </div>
+            </div>
 
             <!-- Children input -->
             <div class="form-outline mb-4" metho="">
               <input type="number" id="children" class="form-control" name="children" style="background-color: white; color:black" required="">
               <label class="form-label" for="children" style="margin-left: 0px;">Children</label>
-            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 56px;"></div><div class="form-notch-trailing"></div></div></div>
-             <!-- Start date input -->
-             <div class="form-outline mb-4" style="background-color: white;" metho="">
+              <div class="form-notch">
+                <div class="form-notch-leading" style="width: 9px;"></div>
+                <div class="form-notch-middle" style="width: 56px;"></div>
+                <div class="form-notch-trailing"></div>
+              </div>
+            </div>
+            <!-- Start date input -->
+            <div class="form-outline mb-4" style="background-color: white;" metho="">
               <input id="datetime" type="date" class="form-control" name="book_date" style="background-color: white; color: black; opacity: 0;" required="">
               <label class="form-label" for="date" style="margin-left: 0px;">Start date</label>
-            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 65.6px;"></div><div class="form-notch-trailing"></div></div></div>
-            
-            
+              <div class="form-notch">
+                <div class="form-notch-leading" style="width: 9px;"></div>
+                <div class="form-notch-middle" style="width: 65.6px;"></div>
+                <div class="form-notch-trailing"></div>
+              </div>
+            </div>
+
+
             <!-- Quote Message -->
             <div class="mb-3">
               <textarea class="form-control" id="message" rows="8" colums="4" name="message" tabindex="4" placeholder="Write your message"></textarea>
             </div>
 
             <!-- Submit button -->
-            <button type="book" class="btn btn-primary btn-block mb-4" name="book" style="background-color: green;">Book Trip</button>
+            <button type="booktrip" class="btn btn-primary btn-block mb-4" name="booktrip" style="background-color: green;">Book Trip</button>
 
             <!-- Register buttons -->
             <div class="text-center">
@@ -184,9 +244,12 @@ if (isset($_POST['book'])) {
     <!-- Custom scripts -->
     <script type="text/javascript"></script>
     <script>
-      document.getElementById('destination').value=sessionStorage.getItem('destination');
+      document.getElementById('destination').value = sessionStorage.getItem('destination');
     </script>
 
 
 
-</div></body></html>t
+  </div>
+</body>
+<?php }?>
+</html>

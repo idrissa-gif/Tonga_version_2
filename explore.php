@@ -4,15 +4,67 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="css/explore.css">
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        thead {
+            size: 50px;
+
+        }
+    </style>
 </head>
 <?php
 include("connection.php");
 include("headerAndFooter/header.php"); ?>
 
 <?php
+
+include('admin/includes/dbconnection.php');
+
+if (isset($_POST["rating_data"])) {
+    $data = array(
+        ':user_name'        =>    $_POST["user_name"],
+        ':user_email'       => $_POST["email"],
+        ':user_rating'        =>    $_POST["rating_data"],
+        ':user_review'        =>    $_POST["user_review"],
+        ':target'           =>  $_POST['target'],
+    );
+
+    $query = "
+	INSERT INTO tblreview 
+	(reviewer_name, review_email, message, rate,target) 
+	VALUES (:user_name, :user_email, :user_review,:user_rating,:target )
+	";
+
+    $statement = $dbh->prepare($query);
+
+    $statement->execute($data);
+
+    echo "Your Review & Rating Successfully Submitted";
+}
+
+?>
+
+<?php
+
 $id = $_GET['tourid'];
 
-$query = "SELECT T.TourTitle , T.Price, T.Country , T.description , T.rate , T.Image , O.logo, O.size, O.tour_type,O.destinations,T.OperatorName
+$query = "SELECT T.ID , T.TourTitle , T.Price, T.Country , T.description , T.rate , T.Image , O.logo, O.size, O.tour_type,O.destinations,T.OperatorName
            FROM `tbltours` T ,`tbloperator` O where T.OperatorName=O.OperatorName and T.TourTitle= '$id'";
 $result = mysqli_query($con, $query);
 $row = mysqli_fetch_array($result);
@@ -22,10 +74,17 @@ $touroperator = $row['OperatorName'];
 $query1 = "SELECT reviewer_name, message , target, created_date, rate from tblreview WHERE target='$touroperator' OR target='$tour_name'";
 $result1 = mysqli_query($con, $query1);
 $row1 = mysqli_fetch_array($result1);
+
+$tour_id = $row['ID'];
+$query2 = "SELECT * from tblrate WHERE tour_id='$tour_id'";
+$result2 = mysqli_query($con, $query2);
+$row2 = mysqli_fetch_array($result2);
+
 ?>
 
+
 <div class="d-grid gap-2 col-6 mx-auto">
-    <button class="btn btn-primary" type="button" href>BOOK<a href="./book.php"> . </a></button>
+    <a class="btn btn-primary" type="button" href="book.php?flag=0">BOOK</a>
 </div>
 <div class="box">
 
@@ -37,7 +96,7 @@ $row1 = mysqli_fetch_array($result1);
                         <a href="#home" class="nav-link active" data-bs-toggle="tab">Overview</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#profile" class="nav-link" data-bs-toggle="tab">Rates</a>
+                        <a href="#rates" class="nav-link" data-bs-toggle="tab">Rates</a>
                     </li>
                     <li class="nav-item">
                         <a href="#inclusions" class="nav-link" data-bs-toggle="tab">Inclusions</a>
@@ -188,7 +247,39 @@ $row1 = mysqli_fetch_array($result1);
 
                     </div>
 
-                    <div class="tab-pane fade" id="profile">
+                    <div class="tab-pane fade" id="rates">
+
+                        <table>
+                            <thead><b>Rates per Person</b></thead>
+                            <tr>
+                                <th colspan="2">Start date</th>
+                                <th>Single</th>
+                                <th>2 people</th>
+                                <th>3 people</th>
+                                <th>4 people</th>
+                                <th>5 people</th>
+                                <th>6 people</th>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><?php echo $row2['starting_date'] ?></td>
+                                <td><?php echo $row2['person_1_price'] ?>$</td>
+                                <td><?php echo $row2['person_3_price'] ?>$</td>
+                                <td><?php echo $row2['person_3_price'] ?>$</td>
+                                <td><?php echo $row2['person_4_price'] ?>$</td>
+                                <td><?php echo $row2['person_5_price'] ?>$</td>
+                                <td><?php echo $row2['person_6_price'] ?>$</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><?php echo $row2['end_date'] ?></td>
+                                <td><?php echo $row2['person_1_price']-5 ?>$</td>
+                                <td><?php echo $row2['person_3_price']-10 ?>$</td>
+                                <td><?php echo $row2['person_3_price']-5 ?>$</td>
+                                <td><?php echo $row2['person_4_price'] ?>$</td>
+                                <td><?php echo $row2['person_5_price']-5 ?>$</td>
+                                <td><?php echo $row2['person_6_price']-15 ?>$</td>
+                            </tr>
+
+                        </table>
                     </div>
 
                     <div class="tab-pane fade" id="inclusions">
@@ -371,3 +462,4 @@ $row1 = mysqli_fetch_array($result1);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
