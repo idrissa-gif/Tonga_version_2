@@ -56,7 +56,7 @@
         while ($row = mysqli_fetch_array($result)) {
         ?>
 
-            <div class="card col-sm-3" style=" height: 20rem; margin-bottom:50px; ">
+            <div class="card col-sm-3" style=" height: auto; margin-bottom:50px; ">
                 <div class="card bg-dark text-white">
                     <img class="card-img-body" src="./image/tours/<?php echo $row['image'] ?>" style="width:auto; height:50vh">
                     <div class="card-img-overlay">
