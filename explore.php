@@ -84,7 +84,7 @@ $row2 = mysqli_fetch_array($result2);
 
 
 <div class="d-grid gap-2 col-6 mx-auto">
-    <a class="btn btn-primary" type="button" href="book.php?flag=0">BOOK</a>
+    <a class="btn btn-primary" id="getFreeQuote" href="book.php" type="button">BOOK</a>
 </div>
 <div class="box">
 
@@ -271,12 +271,12 @@ $row2 = mysqli_fetch_array($result2);
                             </tr>
                             <tr>
                                 <td colspan="2"><?php echo $row2['end_date'] ?></td>
-                                <td><?php echo $row2['person_1_price']-5 ?>$</td>
-                                <td><?php echo $row2['person_3_price']-10 ?>$</td>
-                                <td><?php echo $row2['person_3_price']-5 ?>$</td>
+                                <td><?php echo $row2['person_1_price'] - 5 ?>$</td>
+                                <td><?php echo $row2['person_3_price'] - 10 ?>$</td>
+                                <td><?php echo $row2['person_3_price'] - 5 ?>$</td>
                                 <td><?php echo $row2['person_4_price'] ?>$</td>
-                                <td><?php echo $row2['person_5_price']-5 ?>$</td>
-                                <td><?php echo $row2['person_6_price']-15 ?>$</td>
+                                <td><?php echo $row2['person_5_price'] - 5 ?>$</td>
+                                <td><?php echo $row2['person_6_price'] - 15 ?>$</td>
                             </tr>
 
                         </table>
@@ -462,4 +462,23 @@ $row2 = mysqli_fetch_array($result2);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+
+
+    <script>
+        var spanTitle = <?php echo json_encode($id); ?>; 
+        
+        var data = spanTitle.split("=").join("^").split(";").join("^").split("^")
+
+        var finaldata = data.filter(function(d, index) {
+            return !!index % 2;
+        })
+        sessionStorage.setItem('destination', data);
+
+        document.getElementById('getFreeQuote').addEventListener('onclick', function(e) {
+
+            e.preventDefault();
+
+            window.location.href = "book.php";
+
+        })
+    </script>

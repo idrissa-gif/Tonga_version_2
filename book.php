@@ -1,26 +1,24 @@
 <?php
-session_start();
 include("connection.php");
 include("function.php");
 
 if (isset($_POST['booktrip'])) {
-    $FullName = $_POST['FullName'];
-    $email = $_POST["email"];
-    $Phone = $_POST["Phone"];
-    $adults = $_POST['adults'];
-    $children = $_POST['children'];
-    $destination = $_POST['destination'];
-    $date = $_POST['book_date'];
-    // echo $FullName . ' ' . $email . ' ' . $Phone . ' ' . $adults . ' ' . $children . ' ' . $destination . ' ' . $date;
+  $FullName = $_POST['FullName'];
+  $email = $_POST["email"];
+  $Phone = $_POST["Phone"];
+  $adults = $_POST['adults'];
+  $children = $_POST['children'];
+  $destination = $_POST['destination'];
+  $date = $_POST['book_date'];
 
-    $query = "INSERT INTO `BookTable`(`destination`, `start_date`, `FullName`, `email`, `Phone`, `adults`, `children`) VALUES ('$destination','$date','$FullName','$email','$Phone','$adults','$children')";
-    if (!$con->query($query)) {
-        echo ("Error description: " . $con->error);
-    }
+  $query = "INSERT INTO `BookTable`(`destination`, `start_date`, `FullName`, `email`, `Phone`, `adults`, `children`) VALUES ('$destination','$date','$FullName','$email','$Phone','$adults','$children')";
+  if (!$con->query($query)) {
+    echo ("Error description: " . $con->error);
+  }
 
-    echo "<script> alert('You have got a Free Quote')
+  echo "<script> alert('You have got a Free Quote')
         window.location.replace('book.php'); </script>";
-} else {
+}
 
 ?>
 <html lang="en">
@@ -138,11 +136,12 @@ if (isset($_POST['booktrip'])) {
 
       <div class="tab-content">
         <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-          <form method="POST" action="./booking.php" id="login">
+          <form method="POST" id="login">
 
             <!-- destionation input -->
             <div class="form-outline mb-4" metho="">
-              <input type="text" id="destination" class="form-control" name="destination" style="background-color: white; color:black" required="">
+              <input type="text" id="destination" class="form-control" name="destination" style="background-color: white; color:black" required="" disabled>
+              <input type="text" id="tour" class="form-control" name="destination" style="background-color: white; color:black" required="" hidden>
               <label class="form-label" for="destination" style="margin-left: 0px;">Destination</label>
               <div class="form-notch">
                 <div class="form-notch-leading" style="width: 9px;"></div>
@@ -223,12 +222,9 @@ if (isset($_POST['booktrip'])) {
             </div>
 
             <!-- Submit button -->
-            <button type="booktrip" class="btn btn-primary btn-block mb-4" name="booktrip" style="background-color: green;">Book Trip</button>
+            <button type="submit" class="btn btn-primary btn-block mb-4" name="booktrip" style="background-color: green;">Book Trip</button>
 
-            <!-- Register buttons -->
-            <div class="text-center">
-              <p style="color: white;">Not a member? <a href="register.html">Register</a></p>
-            </div>
+       
           </form>
         </div>
 
@@ -245,11 +241,12 @@ if (isset($_POST['booktrip'])) {
     <script type="text/javascript"></script>
     <script>
       document.getElementById('destination').value = sessionStorage.getItem('destination');
+      document.getElementById('tour').value = sessionStorage.getItem('destination');
     </script>
 
 
 
   </div>
 </body>
-<?php }?>
+
 </html>
