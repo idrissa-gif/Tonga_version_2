@@ -383,27 +383,7 @@ $row2 = mysqli_fetch_array($result2);
                                 </p>
 
 
-                                <h5 class="card-title" style="text-align: left; font-weight:bold">
-                                    <hr> Reviews
-                                    <hr>
-                                </h5>
-                                <div class="col-md-14">
-                                    <div class="card-body">
-
-
-                                        <div class="col-md-4">
-                                            <div class="card"> <i class="fa fa-quote-left u-color"></i>
-                                                <p><?php echo $row1['message'] ?></p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="user-about"> <span class="font-weight-bold d-block"><?php echo $row1['reviewer_name']; ?></span> <span class="u-color"><?php echo $row1['created_date'] ?></span>
-                                                        <div class="d-flex flex-row mt-1"> <?php for ($i = 0; $i < $row1['rate']; $i++) echo "<i class='fa fa-star-o u-color'></i>"; ?></div>
-                                                    </div>
-                                                    <div class="user-image"> <img src="images/usericon.png" class="rounded-circle" width="70"> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                               
 
                                 </div>
                             </div>
