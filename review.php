@@ -202,15 +202,13 @@
                         load_rating_data();
 
                         alert("Thanks for your valuable review !!!");
-                        $('#user_name').val()="";
-
-                        $('#user_email').val()="";
-
-                        $('#user_review').val()="";
 
                     }
                 })
             }
+            document.getElementById("user_name").value="";
+            document.getElementById("user_email").value="";
+            document.getElementById("user_review").value="";
 
 
         });

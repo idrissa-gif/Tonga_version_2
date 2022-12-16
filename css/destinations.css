@@ -163,3 +163,7 @@ color: #fff;
  font:lighter;
 
 }
+.btnlight:hover
+{
+  color:violet;
+}

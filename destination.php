@@ -61,7 +61,7 @@
                     <img class="card-img-body" src="./image/tours/<?php echo $row['image'] ?>" style="width:auto; height:50vh">
                     <div class="card-img-overlay">
                         <h5 class="card-title"><?php echo $row['country_name'] ?></text></h5>
-                        <a href="./explore_country.php?country=<?php echo $row['country_name']?>" class="btn btn-outline-light" style="position:absolute; margin-top: 80%; margin-left:65%; ">Explore</a>
+                        <a href="./explore_country.php?country=<?php echo $row['country_name']?>" class="btn btn-outline-light" style="position:absolute; margin-top: 80%; margin-left:65%;">Explore</a>
 
                     </div>
                 </div>
