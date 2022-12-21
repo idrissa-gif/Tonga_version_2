@@ -38,7 +38,7 @@
 </head>
 <body>
     <!-- header section start -->
-    <?php include("./headerAndFooter/header.php")?>
+    <?php include("./headerAndFooter/header_without_seach.php")?>
     <!-- header section end -->
 
     <div class="body-footer">

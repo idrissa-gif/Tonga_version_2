@@ -5,19 +5,21 @@
   <?php
 
   include("./headerAndFooter/header.php");
-  include("./homeslide.php"); ?>
+  include_once("./connection.php")
+ ?>
 
   <h3>
-    <center><b>Featured Places</b></center>
+    <center><b><?php echo "Search For ". $_GET['search']?></b></center>
   </h3>
 </div>
 
 <!-- <div class='FeaturedPlaces'> -->
 <div class="row">
   <?php
+  $search = $_GET['search'];
 
   $query = "SELECT T.TourTitle , T.Price, T.Country , T.rate , T.Image , O.logo,  T.OperatorName 
-            FROM `tbltours` T ,`tbloperator` O where T.OperatorName=O.OperatorName";
+            FROM `tbltours` T ,`tbloperator` O where T.OperatorName=O.OperatorName AND (T.TourTitle LIKE '%$search%' OR  T.Price LIKE '%$search%' OR T.Country LIKE '%$search%' OR T.rate LIKE '%$search%' OR T.OperatorName LIKE '%$search%')";
 
   $result = mysqli_query($con, $query);
   while ($row = mysqli_fetch_array($result)) {

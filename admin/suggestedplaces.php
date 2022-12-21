@@ -5,6 +5,15 @@ include('includes/dbconnection.php');
 if (strlen($_SESSION['ofsmsaid'] == 0)) {
     header('location:logout.php');
 } else {
+    // Code for deleting product
+    if (isset($_GET['delid'])) {
+        $id = intval($_GET['delid']);
+        $count = $dbh->prepare("DELETE FROM tbltoursuggestion WHERE ID=:id");
+        $count->bindParam(":id", $id, PDO::PARAM_INT);
+        $count->execute();
+        echo "<script>alert('Data deleted');</script>";
+        echo "<script>window.location.href ='suggestedplaces.php'</script>";
+    }
 
 ?>
     <!doctype html>
@@ -12,7 +21,7 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
 
     <head>
 
-        <title>Tonga Agency System | Users Reviews</title>
+        <title>Suggestion of a Tour | Tonga Management System</title>
 
         <!-- Google Fonts
     ============================================ -->
@@ -90,53 +99,53 @@ if (strlen($_SESSION['ofsmsaid'] == 0)) {
                             <div class="sparkline13-list">
                                 <div class="sparkline13-hd">
                                     <div class="main-sparkline13-hd">
-                                        <h1>Users <span class="table-project-n">Reviews</span></h1>
+                                        <h1>Manage <span class="table-project-n">Tour</span></h1>
                                     </div>
                                 </div>
                                 <div class="sparkline13-graph">
                                     <div class="datatable-dashv1-list custom-datatable-overright">
-                                        <div id="toolbar">
-                                            <select class="form-control">
-                                                <option value="">Export Basic</option>
-                                                <option value="all">Export All</option>
-                                                <option value="selected">Export Selected</option>
-                                            </select>
-                                        </div>
-                                        <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+
+                                        <table id="table" data-toggle="table" data-pagination="true" data-show-pagination-switch="true" data-search="true" data-show-columns="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-click-to-select="true" data-toolbar="#toolbar" data-show-export="true">
                                             <thead>
                                                 <tr>
-                                                    <th data-field="state" data-checkbox="true"></th>
-                                                    <th>S.NO</th>
-                                                    <th>Reviewer Name</th>
-                                                    <th>Reviewer Email</th>
-                                                    <th>Message</th>
-                                                    <th>Rate</th>
-                                                    <th>Tour/operator</th>
-                                                    <th>creation date</th>
-                                                   
+
+                                                    <th>S.NO</th>   
+                                                    <th>Tour Title</th>
+                                                    <th>Price</th>
+                                                    <th>Operator Name</th>
+                                                    <th>Country</th>
+                                                    <th>Description</th>
+                                                    <th>Image1</th>
+                                                    <th>Image2</th>
+                                                    <th>Image3</th>
+                                                    <th>Setting</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT * from tblreview";
+                                                $sql = "SELECT * from tbltoursuggestion";
                                                 $query = $dbh->prepare($sql);
                                                 $query->execute();
                                                 $results = $query->fetchAll(PDO::FETCH_OBJ);
 
                                                 $cnt = 1;
                                                 if ($query->rowCount() > 0) {
-                                                    foreach ($results as $row) { ?>
+                                                    foreach ($results as $row) {               ?>
 
                                                         <tr>
-                                                            <td></td>
+
                                                             <td><?php echo htmlentities($cnt); ?></td>
-                                                            <td><?php echo htmlentities($row->reviewer_name); ?></td>
-                                                            <td><?php echo htmlentities($row->review_email); ?></td>
-                                                            <td><?php echo htmlentities($row->user_review); ?></td>
-                                                            <td><?php echo htmlentities($row->rate); ?></td>
-                                                            <td><?php echo htmlentities($row->target); ?></td>
-                                                            <td><?php echo htmlentities(date('Y-m-d H:i:s',$row->datetime)); ?></td>
+                                                            <td><?php echo htmlentities($row->TourTitle); ?></td>
+                                                            <td><?php echo htmlentities($row->Price); ?></td>
+                                                            <td><?php echo htmlentities($row->OperatorName); ?></td>
+                                                            <td><?php echo htmlentities($row->Country); ?></td>
+                                                            <td><?php echo htmlentities($row->description); ?></td>
+                                                            <td><img src="images/tours/<?php echo $row->Image; ?>" width="4000px" height="3000px" value="<?php echo $row->Image; ?>"></td>
+                                                            <td><img src="images/tours/<?php echo $row->Image1; ?>" width="4000px" height="3000px" value="<?php echo $row->Image; ?>"></td>
+                                                            <td><img src="images/tours/<?php echo $row->Image2; ?>" width="4000px" height="3000px" value="<?php echo $row->Image; ?>"></td>
+                                                            <td><a href="edit-suggestedplaces-detail.php?editid=<?php echo htmlentities($row->ID); ?>&pic=<?php echo "$row->Image"; ?>&pic1=<?php echo $row->Image1; ?>&pic2=<?php echo $row->Image2; ?>&pic3=<?php echo $row->Image3; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a><a href="suggestedplaces.php?delid=<?php echo htmlentities($row->ID); ?>" onclick="return confirm('Do you really want to Delete ?');"> <i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                                            
                                                         </tr>
                                                 <?php $cnt = $cnt + 1;
                                                     }

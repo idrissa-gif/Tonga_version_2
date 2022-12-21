@@ -1,6 +1,9 @@
 <?php
-
-
+if (isset($_POST['submit'])){
+    $search = $_POST['searchfield'];
+    echo "alert('Hello')";
+    echo "<script>window.location.href = './search.php?search=$search';</script>";
+}
 ?>
 
 <html lang="en">
@@ -66,12 +69,12 @@
                         <a class="nav-link active" aria-current="page" href="./contact_us.php">Contact us</a>
                     </li>
                 </ul>
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" method="POST">
                     <div class="input-group">
                         <div class="form-outline">
-                            <input type="search" id="form1" class="form-control" placeholder="Search..." />
+                            <input type="search" name='searchfield' id="form1" class="form-control" ondblclick="load()" placeholder="Search..." />
                         </div>
-                        <button type="submit" name="search" id="search" class="btn btn-primary">
+                        <button type="submit" name="submit" id="search" class="btn btn-primary">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -98,8 +101,14 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        function load()
+        {
+            var str=document.getElementById("form1").value
+            window.location.href = "./search.php?search="+str;
 
-
+        }
+    </script>
 
 </body>
 
